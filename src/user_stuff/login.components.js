@@ -44,23 +44,23 @@ const LoginForm = (params) => {
 
     return (
         <div className='login-form'>
-            <h2>Login Form</h2>
+            <h2>היכנסו עכשיו</h2>
             <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
                 <div className="mb-3">
-                    <label>Email address</label>
+                    <label>כתובת אימייל</label>
                     <input
                         type="email"
                         className="form-control email"
-                        placeholder="Enter email"
+                        placeholder="הכנס אימייל"
                         value={username} onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div className="mb-3">
-                    <label>Password</label>
+                    <label>סיסמה</label>
                     <input
                         type="password"
                         className="form-control password"
-                        placeholder="Enter password"
+                        placeholder="הכנס סיסמה"
                         value={password} onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
@@ -72,18 +72,19 @@ const LoginForm = (params) => {
                             id="customCheck1"
                         />
                         <label className="custom-control-label" htmlFor="customCheck1">
-                            Remember me
+                            זכור אותי
                         </label>
                     </div>
                 </div>
                 <div className="d-grid">
                     <button type="submit" className="btn btn-primary">
-                        Submit
+                        כניסה
                     </button>
                 </div>
-                <Link to="/sign-up" className="forgot-password text-right" >
-                    Forgot password?
-                </Link>
+                <p className="forgot-password">
+                    אין לך משתמש עדיין? <Link to="/sign-up" > הרשמה </Link>
+                </p>
+
             </form>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
