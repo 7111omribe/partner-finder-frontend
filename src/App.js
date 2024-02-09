@@ -14,7 +14,7 @@ function App() {
           <div className="auth-inner">
             <Routes>
               <Route path="/sign-in" element={<LoginForm userDataSetter={setUserData} />} />
-              <Route path="/sign-up" element={<SignUp userDataSetter={setUserData} />} />
+              <Route path="/sign-up" element={<SignUp userDataSetter={setUserData}/>} />
               {/* Redirect to sign-in if an unauthenticated user attempts to access other routes */}
               <Route path="*" element={<Navigate to="/sign-in" />} />
             </Routes>

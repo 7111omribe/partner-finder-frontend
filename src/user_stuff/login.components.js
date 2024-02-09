@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Checkbox from '../form_tools/checkbox.components';
 
 
 const LoginForm = (params) => {
@@ -27,18 +28,18 @@ const LoginForm = (params) => {
                 navigate('/');
             }
             else if (response.status === 401) {
-                setErrorMessage('Unauthorized - Wrong Password');
+                setErrorMessage('סיסמה לא נכונה');
                 setPassword('')
             }
             else if (response.status === 404) {
-                setErrorMessage('User is not exists');
+                setErrorMessage('בטוח שנרשמת? המשתמש הזה לא קיים');
                 setUsername('');
                 setPassword('')
             }
-            else { setErrorMessage('Unexpected error occurred'); }
+            else { setErrorMessage('תקלה לא ידועה:('); }
         } catch (error) {
             console.error('Error during login:', error);
-            setErrorMessage('An error occurred. Please try again.');
+            setErrorMessage('תקלה לא ידועה, תנסה להיכנס שוב אולי זה יעבוד הפעם');
         }
     };
 
@@ -64,18 +65,7 @@ const LoginForm = (params) => {
                         value={password} onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div className="mb-3">
-                    <div className="custom-control custom-checkbox">
-                        <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customCheck1"
-                        />
-                        <label className="custom-control-label" htmlFor="customCheck1">
-                            זכור אותי
-                        </label>
-                    </div>
-                </div>
+                <Checkbox text="זכור אותי"></Checkbox>
                 <div className="d-grid">
                     <button type="submit" className="btn btn-primary">
                         כניסה

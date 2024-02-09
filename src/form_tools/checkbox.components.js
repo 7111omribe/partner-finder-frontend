@@ -10,7 +10,7 @@ const Checkbox = (params) => {
                     className="custom-control-input"
                     id="customCheck1"
                 />
-                <label className="custom-control-label" htmlFor="customCheck1">
+                <label className="custom-control-label" htmlFor="customCheck1" style={{marginRight: '6px'}}>
                     {params['text']}
                 </label>
             </div>

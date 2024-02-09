@@ -4,7 +4,26 @@ import { Link, useNavigate } from 'react-router-dom';
 const SignUp = (params) => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+    const validatePassword = (e) => {
+        const password = e.target.password.value;
+        if (password.length < 7) {
+            setErrorMessage('סיסמה לא יכולה להיות קצרה יותר מ7 תווים');
+            e.target.password.value = '';
+            e.target.repeatedPassword.value = '';
+            return false;
+        }
+        const repeatedPassword = e.target.repeatPassword.value
+        if (password !== repeatedPassword) {
+            setErrorMessage('בטוח שהקלדת את אותה הסיסמה פעמיים?');
+            e.target.password.value = '';
+            e.target.repeatedPassword.value = '';
+            return false;
+        }
+        return true;
+    }
+
     const handleSignUp = async (formResults, e) => {
+
         try {
             const response = await fetch('http://localhost:4000/users/sign_up', {
                 method: 'POST',
@@ -20,18 +39,21 @@ const SignUp = (params) => {
                 navigate('/');
             }
             else if (response.status === 409) {
-                setErrorMessage('User is already exists');
+                setErrorMessage('המשתמש כבר קיים... יכול להיות שכבר נרשמת?');
                 e.target.email.value = '';
             }
             else { setErrorMessage('Unexpected error occurred'); }
         } catch (error) {
             console.error('Error during login:', error);
-            setErrorMessage('An error occurred. Please try again.');
+            setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה');
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!validatePassword(e)) {
+            return
+        }
         const fullName = e.target.fullName.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
@@ -47,45 +69,54 @@ const SignUp = (params) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h3>Sign Up</h3>
+            <h3>הרשמה</h3>
             <div className="mb-3">
-                <label>Full name</label>
+                <label>שם מלא</label>
                 <input
                     name='fullName'
                     type="text"
                     className="form-control"
-                    placeholder="Full name"
+                    placeholder="שם מלא"
                     required
                 />
             </div>
             <div className="mb-3">
-                <label>Email address</label>
+                <label>כתובת אימייל</label>
                 <input
                     name='email'
                     type="email"
                     className="form-control"
-                    placeholder="Enter email"
+                    placeholder="הכנס מייל"
                     required
                 />
             </div>
             <div className="mb-3">
-                <label>Password</label>
+                <label>סיסמה</label>
                 <input
                     name='password'
                     type="password"
                     className="form-control"
-                    placeholder="Enter password"
+                    placeholder="הכנס סיסמה"
+                    required
+                />
+            </div>
+            <div className="mb-3">
+                <input
+                    name='repeatPassword'
+                    type="password"
+                    className="form-control"
+                    placeholder="הכנס סיסמה שוב"
                     required
                 />
             </div>
             <div className="d-grid">
                 <button type="submit" className="btn btn-primary">
-                    Sign Up
+                    הרשמה!
                 </button>
             </div>
-            <Link to="/sign-in" className="forgot-password text-right">
-                Already registered sign in?
-            </Link>
+            <p className="forgot-password">
+                כבר רשום? <Link to="/sign-up" > כניסה לאתר </Link>
+            </p>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </form>
     );
