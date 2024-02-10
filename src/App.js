@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'r
 import LoginForm from "./user_stuff/login.components";
 import SignUp from './user_stuff/signup.components';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './navigation/my_navbar.components';
+import Navbar from './navigation/AppNavbar.components';
 
 
 function App() {
