@@ -25,6 +25,8 @@ const LoginForm = (params) => {
             if (response.status === 200) {
                 const data = await response.json();
                 params['userDataSetter'](data['userData'])
+                params['locationDataSetter'](data['locationData'])
+
                 navigate('/');
             }
             else if (response.status === 401) {
