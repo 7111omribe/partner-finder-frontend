@@ -4,6 +4,7 @@ import LoginForm from "./user_stuff/login.components";
 import SignUp from './user_stuff/signup.components';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './navigation/AppNavbar.components';
+import ActivitiesPage from './activities/ActivitiesPage.components';
 
 
 function App() {
@@ -23,9 +24,9 @@ function App() {
         ) : (
           // Render authenticated user content here
           <div>
-            <Navbar userData={userData} locationData={locationData}/>
+            <Navbar userData={userData} locationData={locationData} />
             <Routes>
-              <Route path="/" element={"hey Im in!"} />
+              <Route path="/activities" element={<ActivitiesPage direction={'rtl'}></ActivitiesPage>} />
 
             </Routes>
           </div>

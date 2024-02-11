@@ -36,7 +36,7 @@ const SignUp = (params) => {
             if (response.status === 201) {
                 const data = await response.json();
                 params['userDataSetter'](data['userData'])
-                navigate('/');
+                navigate('/activities');
             }
             else if (response.status === 409) {
                 setErrorMessage('המשתמש כבר קיים... יכול להיות שכבר נרשמת?');

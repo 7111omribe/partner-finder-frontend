@@ -27,7 +27,7 @@ const LoginForm = (params) => {
                 params['userDataSetter'](data['userData'])
                 params['locationDataSetter'](data['locationData'])
 
-                navigate('/');
+                navigate('/activities');
             }
             else if (response.status === 401) {
                 setErrorMessage('סיסמה לא נכונה');
