@@ -52,7 +52,7 @@ const ActivitiesList = ({ locationId, userId }) => {
           />
         ))
       ) : (
-        <div>No activities available</div>
+        <div>אין עדיין הצעות לפעילויות כאן... אנחנו על זה</div>
       )}
     </div>
   );
