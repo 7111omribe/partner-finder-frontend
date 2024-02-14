@@ -26,7 +26,9 @@ function App() {
           <div>
             <Navbar userData={userData} locationData={locationData} />
             <Routes>
-              <Route path="/activities" element={<ActivitiesPage direction={'rtl'}></ActivitiesPage>} />
+              <Route path="/activities" element={
+                <ActivitiesPage userId={userData['user_id']} locationId={locationData['location_id']}></ActivitiesPage>
+              } />
 
             </Routes>
           </div>

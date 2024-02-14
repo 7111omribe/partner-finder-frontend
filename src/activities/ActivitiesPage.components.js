@@ -6,7 +6,8 @@ import MyGroups from "./MyGroups/MyGroups.components";
 import OpenGroups from "./OpenGroups/OpenGroups.components";
 
 
-const ActivitiesPage = () => {
+const ActivitiesPage = ({ userId, locationId }) => {
+  const props = { userId, locationId }
   return (
     <Table striped bordered hover style={{ height: '100vh' }}>
       <thead>
@@ -18,7 +19,7 @@ const ActivitiesPage = () => {
       </thead>
       <tbody>
         <tr>
-          <td><ActivitiesList /></td>
+          <td><ActivitiesList {...props} /></td>
           <td><OpenGroups /></td>
           <td><MyGroups /></td>
         </tr>

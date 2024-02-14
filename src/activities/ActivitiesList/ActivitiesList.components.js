@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ActivityOption from './ActivityOption.components';
 
-const ActivitiesList = () => {
+const ActivitiesList = ({ locationId, userId }) => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,8 +14,8 @@ const ActivitiesList = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userId: 1,
-            locationId: 1,
+            userId: userId,
+            locationId: locationId,
           }),
         });
 
