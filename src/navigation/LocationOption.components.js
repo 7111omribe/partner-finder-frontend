@@ -6,7 +6,6 @@ import { Dropdown } from 'react-bootstrap';
 const LocationOption = (params) => {
     const chooseLocation = async (chosenOptionData, locationSetter, userId, searchQuerySetter) => {
         locationSetter(chosenOptionData);
-        searchQuerySetter('');
         const response = await fetch('http://localhost:4000/navbar/change_location', {
             method: 'POST',
             headers: {
@@ -18,6 +17,7 @@ const LocationOption = (params) => {
             }),
         })
         console.log(response) // I dont know, add log or something
+        searchQuerySetter('');
 
     }
 

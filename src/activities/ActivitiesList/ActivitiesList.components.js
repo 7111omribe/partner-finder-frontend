@@ -4,6 +4,8 @@ import ActivityOption from './ActivityOption.components';
 const ActivitiesList = ({ locationId, userId }) => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [noResultsTxt, setNoResultsTxt] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,17 +26,21 @@ const ActivitiesList = ({ locationId, userId }) => {
           const activitiesData = data['results'];
           setActivities(activitiesData);
         } else {
+          setActivities([]);
+          setNoResultsTxt(response.status === 204 ? 'אין כאן רעיונות לאטרקציות עדיין... אנחנו על זה' : 'תקלה לא ידועה');
           console.error('Failed to fetch data');
         }
       } catch (error) {
+        setNoResultsTxt('תקלה לא ידועה')
         console.error('Error fetching data:', error);
+        setActivities([])
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []); // empty dependency array to ensure the effect runs only once on mount
+  }, [locationId]); // empty dependency array to ensure the effect runs only once on mount
 
   return (
     <div>
@@ -52,7 +58,7 @@ const ActivitiesList = ({ locationId, userId }) => {
           />
         ))
       ) : (
-        <div>אין עדיין הצעות לפעילויות כאן... אנחנו על זה</div>
+        <div>{noResultsTxt}</div>
       )}
     </div>
   );
