@@ -21,7 +21,7 @@ const ActivityOption = ({ title, imgPath, description, activityTime, activityTyp
     };
 
     return (
-        <Container style={{ backgroundColor: 'lightblue', borderRadius: '30px', padding: 20 }}>
+        <Container style={{ backgroundColor: 'lightblue', borderRadius: '30px', padding: 20, marginTop:5 }}>
             <Row>
                 <Col style={{ textAlign: 'center' }} className={'h5'}>
                     {title}
