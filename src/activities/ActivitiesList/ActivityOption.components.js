@@ -56,7 +56,7 @@ const ActivityOption = ({ title, imgPath, description, activityTime, activityTyp
                         </Overlay>
                     </div>
                 </Col>
-                <Col md={3} className="d-flex justify-content-end" style={{ alignItems: 'end' }}>
+                <Col md={3} >
                     <BsPlus size={30} className="ml-auto" />
                 </Col>
             </Row>
