@@ -24,7 +24,7 @@ function App() {
         ) : (
           // Render authenticated user content here
           <div>
-            <Navbar userData={userData} locationData={locationData} />
+            <Navbar userData={userData} locationData={locationData} locationSetter={setlocationData} />
             <Routes>
               <Route path="/activities" element={
                 <ActivitiesPage userId={userData['user_id']} locationId={locationData['location_id']}></ActivitiesPage>

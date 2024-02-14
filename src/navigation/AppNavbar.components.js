@@ -26,7 +26,7 @@ const NavBar = (params) => {
             </Navbar.Brand>
           </div>
           
-          <SearchBar />
+          <SearchBar locationSetter={params['locationSetter']} userId={params['userData']['user_id']}/>
         </div>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
