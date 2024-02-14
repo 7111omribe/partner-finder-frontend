@@ -63,7 +63,7 @@ const SearchBar = ({ locationSetter, userId }) => {
             <Dropdown show={searchResults.length > 0}>
                 <Dropdown.Menu style={{ width: '100%', textAlign: 'right' }}>
                     {searchResults.map((result, index) => (
-                        <LocationOption optData={result} optIndex={index} locationSetter={locationSetter} userId={userId} />
+                        <LocationOption optData={result} optIndex={index} locationSetter={locationSetter} userId={userId} searchQuerySetter={setSearchQuery} />
                     ))}
                 </Dropdown.Menu>
             </Dropdown>
