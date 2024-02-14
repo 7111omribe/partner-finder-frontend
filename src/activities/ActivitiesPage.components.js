@@ -1,9 +1,9 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import './ActivitiesPage.css';
 import ActivitiesList from "./ActivitiesList/ActivitiesList.components";
-import OpenGroups from "./OpenGroups/OpenGroups.components";
+import './ActivitiesPage.css';
 import MyGroups from "./MyGroups/MyGroups.components";
+import OpenGroups from "./OpenGroups/OpenGroups.components";
 
 
 const ActivitiesPage = () => {

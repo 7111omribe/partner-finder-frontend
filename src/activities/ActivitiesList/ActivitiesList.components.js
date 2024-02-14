@@ -1,37 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import React from 'react';
-import { Col, Container, Image, Row } from 'react-bootstrap';
-import { BsPlus, BsQuestion } from 'react-icons/bs';
+import ActivityOption from './ActivityOption.components';
+
+
+
 
 const ActivitiesList = (params) => {
     return (
-
-        <Container style={{
-            backgroundColor: 'lightblue', borderRadius: '30px', padding: 20
-        }}  >
-            <Row>
-                <Col style={{ textAlign: 'center' }} className={'h5'}>
-                    {' סיור אוכל עם ליאת בעמק הקדוש'}
-                </Col>
-
-            </Row>
-            <Row>
-                <Col md={3}>
-                    {'סיור'}
-                </Col>
-                <Col md={3}>
-                    {'יום'}
-                </Col>
-                <Col md={3}>
-                    <BsQuestion size={30} className="ml-auto" />
-                </Col>
-                <Col md={3} className="d-flex justify-content-end" style={{ alignItems: 'end' }}>
-                    <BsPlus size={30} className="ml-auto" />
-                </Col>
-            </Row>
-        </Container >
-    );
+        <ActivityOption
+            title={'סיור אוכל בעמק הקדוש עם ליאת'}
+            imgPath={'liat.jpg'}
+            description={'סיור של אוכל, נפש ותרבות עם ליאת - ישראלית שהשתקעה באזור ותיקח אתכם למסע שיחבר אתכם לתרבות הנסתרת של העמק הקדוש דרך מפגש אוטנטי עם האנשים והמאכלים של האזור'}
+            activityTime={'יום'}
+            activityType={'סיור'}
+        />
+    )
 };
 
 export default ActivitiesList;
