@@ -13,7 +13,7 @@ const ActivitiesPage = () => {
         <tr>
           <th>אטרקציות באזור</th>
           <th>קבוצות פתוחות</th>
-          <th>קבוצות שאתה נמצא בהן</th>
+          <th>קבוצות שלך</th>
         </tr>
       </thead>
       <tbody>
