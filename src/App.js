@@ -5,7 +5,7 @@ import SignUp from './component/authing/signup.components';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './component/navigation/AppNavbar.components';
 import ActivitiesPage from './component/activities/ActivitiesPage.components';
-import SettingsPage from './component/navigation/SettingsPage.components';
+import SettingsPage from './component/navigation/settings/SettingsPage.components';
 
 
 function App() {
