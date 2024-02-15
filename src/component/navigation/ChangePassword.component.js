@@ -48,7 +48,7 @@ const ChangePassword = ({ userData, userDataSetter }) => {
         <div className="change-password">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
-                    <label htmlFor="currentPassword">Current Password:</label>
+                    <label htmlFor="currentPassword">סיסמה</label>
                     <input
                         type="password"
                         id="currentPassword"
@@ -57,7 +57,7 @@ const ChangePassword = ({ userData, userDataSetter }) => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="newPassword">New Password:</label>
+                    <label htmlFor="newPassword">סיסמה חדשה</label>
                     <input
                         type="password"
                         id="newPassword"
@@ -66,7 +66,7 @@ const ChangePassword = ({ userData, userDataSetter }) => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="confirmNewPassword">Confirm New Password:</label>
+                    <label htmlFor="confirmNewPassword">סיסמה חדשה שוב</label>
                     <input
                         type="password"
                         id="confirmNewPassword"
@@ -78,7 +78,7 @@ const ChangePassword = ({ userData, userDataSetter }) => {
                     <p className="error-message">{errorMessage}</p>
                 )}
 
-                <button type="submit">Change Password</button>
+                <button type="submit">שנה סיסמה</button>
             </form>
         </div>
     );
