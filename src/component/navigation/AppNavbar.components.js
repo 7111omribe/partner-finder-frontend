@@ -13,7 +13,7 @@ const NavBar = (params) => {
             <Navbar.Brand as={NavLink} to="/" className="d-flex align-items-center">
               <span>שלום {params['userData']['name']} </span>
               <img
-                src={require(`./../assets/flags/${params['locationData']['country_flag']}`)}
+                src={require(`./../../assets/flags/${params['locationData']['country_flag']}`)}
                 width="28"
                 height="14px"
                 className="d-inline-block align-top"

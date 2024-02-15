@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
-import LoginForm from "./authing/login.components";
-import SignUp from './authing/signup.components';
+import LoginForm from "./component/authing/login.components";
+import SignUp from './component/authing/signup.components';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './navigation/AppNavbar.components';
-import ActivitiesPage from './activities/ActivitiesPage.components';
+import Navbar from './component/navigation/AppNavbar.components';
+import ActivitiesPage from './component/activities/ActivitiesPage.components';
 
 
 function App() {

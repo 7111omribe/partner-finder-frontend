@@ -35,7 +35,7 @@ const LocationOption = (params) => {
         >
             <span>{text}</span>
             <img
-                src={require(`./../assets/flags/${optData['country_flag']}`)}
+                src={require(`./../../assets/flags/${optData['country_flag']}`)}
                 width="28"
                 height="14px"
                 className="d-inline-block align-top"

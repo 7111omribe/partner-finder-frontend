@@ -17,7 +17,7 @@ const ActivityHover = ({ title, imgPath, description }) => {
                 </Row>
                 <Row >
                     {imgPath &&
-                        <Image src={require(`./../../assets/activities/${imgPath}`)} alt="Card image" id='image' />
+                        <Image src={require(`./../../../assets/activities/${imgPath}`)} alt="Card image" id='image' />
                     }
                 </Row>
                 <Row style={{ textAlign: 'center', fontSize: 10 }}>
