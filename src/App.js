@@ -5,6 +5,7 @@ import SignUp from './component/authing/signup.components';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './component/navigation/AppNavbar.components';
 import ActivitiesPage from './component/activities/ActivitiesPage.components';
+import SettingsPage from './component/navigation/SettingsPage.components';
 
 
 function App() {
@@ -23,11 +24,14 @@ function App() {
           </div>
         ) : (
           // Render authenticated user content here
-          <div>
+          <div style={{height:'100%'}}>
             <Navbar userData={userData} locationData={locationData} locationSetter={setlocationData} />
             <Routes>
               <Route path="/activities" element={
-                <ActivitiesPage userId={userData['user_id']} locationId={locationData['location_id']}></ActivitiesPage>
+                <ActivitiesPage userId={userData['user_id']} locationId={locationData['location_id']} />
+              } />
+              <Route path="/settings" element={
+                <SettingsPage userData={userData} userDataSetter={setUserData}/>
               } />
 
             </Routes>

@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import './ChangePassword.css';
+
+
+const ChangePassword = ({ userData, userDataSetter }) => {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const onSubmit = async (data) => {
+        if (data.currentPassword != userData['password']) {
+            setErrorMessage('סיסמה שגוייה')
+        }
+        else if (data.newPassword !== data.confirmNewPassword) {
+            setErrorMessage('לא שמת אותה סיסמה... תבדוק שוב')
+        }
+        else if (data.newPassword.length < 7) {
+            setErrorMessage('הסיסמה צריכה להיות לפחות שבעה תווים'); // todo create one password validation func
+        }
+        else {
+            try {
+                const response = await fetch('http://localhost:4000/users/change_password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId: userData.user_id,
+                        newPassword: data.newPassword
+                    }),
+                });
+
+                if (response.status === 201) {
+                    setErrorMessage('הסיסמה שונתה בהצלחה!') //todo change color
+                    userData['password'] = data.newPassword
+                    userDataSetter(userData)
+                }
+                else { setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה'); }
+            } catch (error) {
+                console.error('Error during login:', error);
+                setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה');
+            }
+        }
+    };
+
+    return (
+        <div className="change-password">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group">
+                    <label htmlFor="currentPassword">Current Password:</label>
+                    <input
+                        type="password"
+                        id="currentPassword"
+                        {...register('currentPassword', { required: true })}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="newPassword">New Password:</label>
+                    <input
+                        type="password"
+                        id="newPassword"
+                        {...register('newPassword', { required: true })}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="confirmNewPassword">Confirm New Password:</label>
+                    <input
+                        type="password"
+                        id="confirmNewPassword"
+                        {...register('confirmNewPassword', { required: true })}
+                    />
+                </div>
+
+                {errorMessage && (
+                    <p className="error-message">{errorMessage}</p>
+                )}
+
+                <button type="submit">Change Password</button>
+            </form>
+        </div>
+    );
+};
+
+export default ChangePassword;
