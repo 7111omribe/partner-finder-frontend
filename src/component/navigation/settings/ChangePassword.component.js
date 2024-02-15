@@ -45,7 +45,7 @@ const ChangePassword = ({ userData, userDataSetter }) => {
     };
 
     return (
-        <div className="change-password">
+        <div className="settings-form">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="currentPassword">סיסמה</label>

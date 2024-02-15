@@ -2,6 +2,7 @@ import React from "react";
 import './SettingsPage.css';
 import Collapser from "./Collapser";
 import ChangePassword from "./ChangePassword.component";
+import DeleteAccount from "./DeleteAccount.components";
 
 
 const SettingsPage = ({ userData, userDataSetter }) => {
@@ -13,7 +14,7 @@ const SettingsPage = ({ userData, userDataSetter }) => {
                 <ChangePassword {...props} />
             </Collapser>
             <Collapser title={'מחק משתמש'}>
-                {'אתה בטוח? טוב, כאן בקרוב תוכל למחוק את המשתמש שלך'}
+                <DeleteAccount {...props} />
             </Collapser>
         </div>)
 }
