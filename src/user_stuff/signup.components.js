@@ -115,7 +115,7 @@ const SignUp = (params) => {
                 </button>
             </div>
             <p className="forgot-password">
-                כבר רשום? <Link to="/sign-up" > כניסה לאתר </Link>
+                כבר רשום? <Link to="/login" > כניסה לאתר </Link>
             </p>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </form>
