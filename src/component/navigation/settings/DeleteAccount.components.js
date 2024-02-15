@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmationModal from '../../../form_tools/ConfirmationModal.components';
 
-import './ChangePassword.css';
+import './SettingForm.css';
 
 const DeleteAccount = ({ userData, userDataSetter }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import './ChangePassword.css';
+import './SettingForm.css';
 
 
 const ChangePassword = ({ userData, userDataSetter }) => {
