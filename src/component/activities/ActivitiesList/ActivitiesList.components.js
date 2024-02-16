@@ -49,11 +49,7 @@ const ActivitiesList = ({ locationId, userId }) => {
       ) : activities.length ? (
         activities.map((item, index) => (
           <ActivityOption
-            title={item.activity_name}
-            imgPath={item.img_path}
-            description={item.activity_description}
-            activityTime={item.activity_time}
-            activityType={item.activity_type}
+            item={item}
             key={index}
           />
         ))

@@ -8,7 +8,14 @@ const CustomQuestionIcon = React.forwardRef((props, ref) => (
     <BsQuestion {...props} ref={ref} />
 ));
 
-const ActivityOption = ({ title, imgPath, description, activityTime, activityType }) => {
+const ActivityOption = ({ item }) => {
+    const title = item.activity_name
+    const imgPath = item.img_path
+    const description = item.activity_description
+    const activityTime = item.activity_time
+    const activityType = item.activity_type
+    const agents = item.agents
+
     const [showTooltip, setShowTooltip] = useState(false);
     const target = useRef(null);
 
@@ -21,7 +28,7 @@ const ActivityOption = ({ title, imgPath, description, activityTime, activityTyp
     };
 
     return (
-        <Container style={{ backgroundColor: 'lightblue', borderRadius: '30px', padding: 20, marginTop:5 }}>
+        <Container style={{ backgroundColor: 'lightblue', borderRadius: '30px', padding: 20, marginTop: 5 }}>
             <Row>
                 <Col style={{ textAlign: 'center' }} className={'h5'}>
                     {title}
@@ -51,7 +58,7 @@ const ActivityOption = ({ title, imgPath, description, activityTime, activityTyp
                                 id="overlay-example"
                             // style={{ width: 300 }}
                             >
-                                <ActivityHover title={title} imgPath={imgPath} description={description} />
+                                <ActivityHover title={title} imgPath={imgPath} description={description} agents={agents} />
                             </Tooltip>
                         </Overlay>
                     </div>

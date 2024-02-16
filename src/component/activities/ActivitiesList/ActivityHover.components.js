@@ -5,7 +5,7 @@ import './ActivityHover.css';
 
 
 
-const ActivityHover = ({ title, imgPath, description }) => {
+const ActivityHover = ({ title, imgPath, description, agents }) => {
     return (
         <div
             id="overlay-example"
@@ -23,6 +23,21 @@ const ActivityHover = ({ title, imgPath, description }) => {
                 <Row style={{ textAlign: 'center', fontSize: 10 }}>
                     <div>{description}</div>
                 </Row>
+                {agents.length > 0 &&
+                    (
+                        <Row style={{ textAlign: 'right', fontSize: 10 }}>
+                            <div style={{ textDecoration: 'underline' }}>
+                                לפרטים
+                            </div>
+                            {
+                                agents.map((item, index) => (
+                                    <div key={index}>{item.agent_name + ' - ' + item.agent_phone}</div>
+                                ))
+                            }
+                        </Row>
+                    )
+                }
+
 
             </Container>
         </div>
