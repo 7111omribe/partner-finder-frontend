@@ -20,8 +20,8 @@ const ActivitiesPage = ({ userId, locationId }) => {
       <tbody>
         <tr>
           <td><ActivitiesList {...props} /></td>
-          <td><OpenGroups /></td>
-          <td><MyGroups /></td>
+          <td><OpenGroups  {...props} /></td>
+          <td><MyGroups  {...props} /></td>
         </tr>
       </tbody>
     </Table>
