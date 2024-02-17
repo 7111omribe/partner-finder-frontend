@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Checkbox from './../../form_tools/checkbox.components';
+import Checkbox from './../../toolsComponents/checkbox.components';
 
 
 const LoginForm = (params) => {

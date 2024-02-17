@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import ConfirmationModal from '../../../form_tools/ConfirmationModal.components';
+import ConfirmationModal from '../../../toolsComponents/ConfirmationModal.components';
 
 import './SettingForm.css';
 
