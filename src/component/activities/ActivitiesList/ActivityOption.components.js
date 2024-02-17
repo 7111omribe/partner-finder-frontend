@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { Col, Container, Row, Overlay, Tooltip } from 'react-bootstrap';
 import { BsPlus, BsQuestion } from 'react-icons/bs';
 import ActivityHover from './ActivityHover.components';
+import './../OptionItem.css'
 
 const CustomQuestionIcon = React.forwardRef((props, ref) => (
     <BsQuestion {...props} ref={ref} />
@@ -28,7 +29,7 @@ const ActivityOption = ({ item }) => {
     };
 
     return (
-        <Container style={{ backgroundColor: 'lightblue', borderRadius: '30px', padding: 20, marginTop: 5 }}>
+        <Container className={'option-item'}>
             <Row>
                 <Col style={{ textAlign: 'center' }} className={'h5'}>
                     {title}
