@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const OptionsColumn = ({ locationId, userId, uri, optionComponent: OptionComponent, noResultsTxt }) => {
-    const [activities, setActivities] = useState([]);
+    const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorTxt, setErrorTxt] = useState(null);
 
@@ -21,10 +21,10 @@ const OptionsColumn = ({ locationId, userId, uri, optionComponent: OptionCompone
 
                 if (response.status === 200) {
                     const data = await response.json();
-                    const activitiesData = data['results'];
-                    setActivities(activitiesData);
+                    const optionsData = data['results'];
+                    setOptions(optionsData);
                 } else {
-                    setActivities([]);
+                    setOptions([]);
                     setErrorTxt(
                         response.status === 204
                             ? noResultsTxt
@@ -35,21 +35,21 @@ const OptionsColumn = ({ locationId, userId, uri, optionComponent: OptionCompone
             } catch (error) {
                 setErrorTxt('תקלה לא ידועה');
                 console.error('Error fetching data:', error);
-                setActivities([]);
+                setOptions([]);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchData();
-    }, [locationId]); // empty dependency array to ensure the effect runs only once on mount
+    }, [locationId]);
 
     return (
         <div>
             {loading ? (
                 <div>Loading...</div>
-            ) : activities.length ? (
-                activities.map((item, index) => <OptionComponent item={item} key={index} />)
+            ) : options.length ? (
+                options.map((item, index) => <OptionComponent item={item} key={index} />)
             ) : (
                 <div>{errorTxt}</div>
             )}
