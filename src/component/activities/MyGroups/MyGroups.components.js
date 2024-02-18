@@ -1,5 +1,13 @@
+import { Image } from "react-bootstrap";
 import OptionsColumn from "../OptionsColumn.components";
 import MyGroupOption from "./MyGroupOption.components";
+
+
+const Junk = ({ }) => {
+    return (
+        <Image src={require("./../../../assets/icons/blue_plus.png")} style={{maxWidth:'20%'}}/>
+    );
+};
 
 
 const MyGroups = ({ locationId, userId }) => {
@@ -8,6 +16,7 @@ const MyGroups = ({ locationId, userId }) => {
         userId={userId}
         uri="posts/getMyPosts"
         optionComponent={MyGroupOption}
+        afterwardsComponent={Junk}
         noResultsTxt={'לא הצטרפת לאף קבוצה עדיין!'}
     />
     );

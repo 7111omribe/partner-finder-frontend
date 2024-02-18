@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-const OptionsColumn = ({ locationId, userId, uri, optionComponent: OptionComponent, noResultsTxt }) => {
+const OptionsColumn = ({
+    locationId,
+    userId,
+    uri,
+    optionComponent: OptionComponent,
+    afterwardsComponent: AfterwardsComponent,
+    noResultsTxt
+}) => {
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorTxt, setErrorTxt] = useState(null);
@@ -53,6 +60,7 @@ const OptionsColumn = ({ locationId, userId, uri, optionComponent: OptionCompone
             ) : (
                 <div>{errorTxt}</div>
             )}
+            {AfterwardsComponent && <div style={{marginTop:20}}><AfterwardsComponent /></div>}
         </div>
     );
 };
