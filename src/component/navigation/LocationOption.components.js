@@ -26,7 +26,7 @@ const LocationOption = (params) => {
     const optData = params['optData']
     const index = params['optIndex']
     const locationSetter = params['locationSetter']
-    const userId = userData['userId']
+    const userId = userData['user_id']
     const searchQuerySetter = params['searchQuerySetter']
     const text = optData.location_name + ', ' + optData.country_name
     return (

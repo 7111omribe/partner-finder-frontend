@@ -12,7 +12,7 @@ const OptionsColumn = ({
     const [loading, setLoading] = useState(true);
     const [errorTxt, setErrorTxt] = useState(null);
     const { userData } = useContext(UserDataContext);
-    const userId = userData['userId']
+    const userId = userData['user_id']
 
     useEffect(() => {
         const fetchData = async () => {
