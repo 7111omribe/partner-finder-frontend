@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import './../OptionItem.css';
+import { StartTimeTab } from './StartTimeTab';
 
 function createCurrentAtendenciesTxt(item) {
     let attendenciesNum = 0;
@@ -36,7 +37,6 @@ const MyGroupOption = ({ item }) => {
 
     const currentAttendenciesTxt = createCurrentAtendenciesTxt(item);
     const participantsRange = createParticipantsRangeTxt(item);
-
     const timeAmount = item['activityData']['activityTime'] ?? '';
 
     return (
@@ -59,7 +59,7 @@ const MyGroupOption = ({ item }) => {
                     {participantsRange}
                 </Col>
                 <Col md={3}>
-                    <div></div>
+                    <StartTimeTab item={item} />
                 </Col>
                 <Col md={3} >
                     {timeAmount}
