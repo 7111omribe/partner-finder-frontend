@@ -5,7 +5,7 @@ import GroupOption from '../GroupOption.component';
 
 
 const MyGroupOption = ({ item }) => {
-    const isAdmin = item['creationData']['adminId'] === 1;
+    const isAdmin = item['creationData']['adminId'] === 1; // todo relize how to get read userIds
     return (
         <GroupOption
             item={item}
