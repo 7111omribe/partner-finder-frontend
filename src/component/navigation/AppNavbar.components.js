@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import SearchBar from './SearchBar.components';
+import { UserDataContext } from '../../App';
 
 const NavBar = (params) => {
+  const { userData } = useContext(UserDataContext);
   return (
     <Navbar bg="light" expand="sm" className={styles.navbar}>
       <Container className={styles.navbarContainer}>
         <div className="d-flex w-100 justify-content-between">
           <div className="d-flex align-items-center">
             <Navbar.Brand as={NavLink} to="/" className="d-flex align-items-center">
-              <span>שלום {params['userData']['name']} </span>
+              <span>שלום {userData['name']} </span>
               <img
                 src={require(`./../../assets/flags/${params['locationData']['country_flag']}`)}
                 width="28"
@@ -25,8 +27,8 @@ const NavBar = (params) => {
               />
             </Navbar.Brand>
           </div>
-          
-          <SearchBar locationSetter={params['locationSetter']} userId={params['userData']['user_id']}/>
+
+          <SearchBar locationSetter={params['locationSetter']} />
         </div>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { UserDataContext } from '../../App';
 
 
 
 const LocationOption = (params) => {
+    const { userData } = useContext(UserDataContext);
     const chooseLocation = async (chosenOptionData, locationSetter, userId, searchQuerySetter) => {
         locationSetter(chosenOptionData);
         const response = await fetch('http://localhost:4000/navbar/change_location', {
@@ -24,7 +26,7 @@ const LocationOption = (params) => {
     const optData = params['optData']
     const index = params['optIndex']
     const locationSetter = params['locationSetter']
-    const userId = params['userId']
+    const userId = userData['userId']
     const searchQuerySetter = params['searchQuerySetter']
     const text = optData.location_name + ', ' + optData.country_name
     return (

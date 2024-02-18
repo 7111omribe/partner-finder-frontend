@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import LocationOption from './LocationOption.components';
 
 
-const SearchBar = ({ locationSetter, userId }) => {
+const SearchBar = ({ locationSetter }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     useEffect(() => {
@@ -63,7 +63,7 @@ const SearchBar = ({ locationSetter, userId }) => {
             <Dropdown show={searchResults.length > 0}>
                 <Dropdown.Menu style={{ width: '100%', textAlign: 'right' }}>
                     {searchResults.map((result, index) => (
-                        <LocationOption optData={result} optIndex={index} locationSetter={locationSetter} userId={userId} searchQuerySetter={setSearchQuery} />
+                        <LocationOption optData={result} optIndex={index} locationSetter={locationSetter} searchQuerySetter={setSearchQuery} />
                     ))}
                 </Dropdown.Menu>
             </Dropdown>

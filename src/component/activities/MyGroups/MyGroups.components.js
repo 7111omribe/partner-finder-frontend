@@ -10,10 +10,9 @@ const Junk = ({ }) => {
 };
 
 
-const MyGroups = ({ locationId, userId }) => {
+const MyGroups = ({ locationId }) => {
     return (<OptionsColumn
         locationId={locationId}
-        userId={userId}
         uri="posts/getMyPosts"
         optionComponent={MyGroupOption}
         afterwardsComponent={Junk}

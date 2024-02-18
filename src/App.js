@@ -27,10 +27,10 @@ function App() {
           ) : (
             // Render authenticated user content here
             <div style={{ height: '100%' }}>
-              <Navbar userData={userData} locationData={locationData} locationSetter={setlocationData} />
+              <Navbar locationData={locationData} locationSetter={setlocationData} />
               <Routes>
                 <Route path="/activities" element={
-                  <ActivitiesPage userId={userData['user_id']} locationId={locationData['location_id']} />
+                  <ActivitiesPage locationId={locationData['location_id']} />
                 } />
                 <Route path="/settings" element={
                   <SettingsPage userData={userData} />
