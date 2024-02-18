@@ -31,7 +31,7 @@ function createParticipantsRangeTxt(item) {
 
 }
 
-const GroupOption = ({ item }) => {
+const GroupOption = ({ item, style }) => {
     const title = item['activityData']['title'];
     const description = item['activityData']['description'];
 
@@ -39,7 +39,7 @@ const GroupOption = ({ item }) => {
     const participantsRange = createParticipantsRangeTxt(item);
     const timeAmount = item['activityData']['activityTime'] ?? '';
     return (
-        <Container className={'option-item'}>
+        <Container style={style} className={'option-item'}>
             <Row>
                 <Col style={{ textAlign: 'center' }} className={'h5'}>
                     {title}

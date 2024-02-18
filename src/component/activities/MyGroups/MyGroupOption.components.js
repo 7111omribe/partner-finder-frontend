@@ -1,11 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import GroupOption from '../GroupOption.component';
+import { UserDataContext } from '../../../App';
 
 
 
 const MyGroupOption = ({ item }) => {
-    const isAdmin = item['creationData']['adminId'] === 1; // todo relize how to get read userIds
+    const { userData } = useContext(UserDataContext);
+    const isAdmin = item['creationData']['adminId'] === userData['user_id'];
     return (
         <GroupOption
             item={item}
