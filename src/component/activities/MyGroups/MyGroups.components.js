@@ -1,15 +1,13 @@
 import OptionsColumn from "../OptionsColumn.components";
+import MyGroupOption from "./MyGroupOption.components";
 
-const Junk = ({ locationId, userId }) => {
-    return (<div>hey</div>)
-}
 
 const MyGroups = ({ locationId, userId }) => {
     return (<OptionsColumn
         locationId={locationId}
         userId={userId}
         uri="posts/getMyPosts"
-        optionComponent={Junk}
+        optionComponent={MyGroupOption}
         noResultsTxt={'לא הצטרפת לאף קבוצה עדיין!'}
     />
     );
