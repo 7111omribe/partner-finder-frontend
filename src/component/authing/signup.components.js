@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserDataContext } from '../../App';
 
 const SignUp = (params) => {
     const [errorMessage, setErrorMessage] = useState('');
+    const { setUserData } = useContext(UserDataContext);
     const navigate = useNavigate();
     const validatePassword = (e) => {
         const password = e.target.password.value;
@@ -35,7 +37,7 @@ const SignUp = (params) => {
 
             if (response.status === 201) {
                 const data = await response.json();
-                params['userDataSetter'](data['userData'])
+                setUserData(data['userData'])
                 navigate('/activities');
             }
             else if (response.status === 409) {

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from './../../toolsComponents/checkbox.components';
+import { UserDataContext } from '../../App';
 
 
 const LoginForm = (params) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+
+    const { setUserData } = useContext(UserDataContext);
+
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -24,7 +28,7 @@ const LoginForm = (params) => {
 
             if (response.status === 200) {
                 const data = await response.json();
-                params['userDataSetter'](data['userData'])
+                setUserData(data['userData'])
                 params['locationDataSetter'](data['locationData'])
 
                 navigate('/activities');

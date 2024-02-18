@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmationModal from '../../../toolsComponents/ConfirmationModal.components';
 
 import './SettingForm.css';
+import { UserDataContext } from '../../../App';
 
-const DeleteAccount = ({ userData, userDataSetter }) => {
+const DeleteAccount = ({ userData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [errorMessage, setErrorMessage] = useState('');
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const { setUserData } = useContext(UserDataContext);
 
     const onSubmit = async (data) => {
         if (data.currentPassword === userData['password']) {
@@ -30,7 +32,7 @@ const DeleteAccount = ({ userData, userDataSetter }) => {
             });
 
             if (response.status === 201) {
-                userDataSetter({})
+                setUserData({})
             }
             else { setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה'); }
         } catch (error) {

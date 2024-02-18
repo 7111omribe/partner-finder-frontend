@@ -5,8 +5,8 @@ import ChangePassword from "./ChangePassword.component";
 import DeleteAccount from "./DeleteAccount.components";
 
 
-const SettingsPage = ({ userData, userDataSetter }) => {
-    const props = { userData, userDataSetter }
+const SettingsPage = ({ userData }) => {
+    const props = { userData }
     return (
         <div className="settings-page">
             <h1 className="settings-page-title">הגדרות</h1>

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import './SettingForm.css';
+import { UserDataContext } from '../../../App';
 
 
-const ChangePassword = ({ userData, userDataSetter }) => {
+const ChangePassword = ({ userData }) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { setUserData } = useContext(UserDataContext);
     const [errorMessage, setErrorMessage] = useState('');
 
     const onSubmit = async (data) => {
@@ -34,7 +36,7 @@ const ChangePassword = ({ userData, userDataSetter }) => {
                 if (response.status === 201) {
                     setErrorMessage('הסיסמה שונתה בהצלחה!') //todo change color
                     userData['password'] = data.newPassword
-                    userDataSetter(userData)
+                    setUserData(userData)
                 }
                 else { setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה'); }
             } catch (error) {
