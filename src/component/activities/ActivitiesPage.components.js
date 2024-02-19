@@ -9,7 +9,7 @@ import OpenGroups from "./OpenGroups/OpenGroups.components";
 const ActivitiesPage = ({ locationId }) => {
   const props = { locationId }
   return (
-    <Table striped bordered hover style={{ height: '100vh' }}>
+    <Table striped bordered hover style={{ height: '100vh' }} className={"activities-page"}>
       <thead>
         <tr>
           <th>אטרקציות באזור</th>
