@@ -10,10 +10,13 @@ const CreateGroupBotton = ({ }) => {
     const onClick = async (data) => {
         setShowConfirmationModal(true)
     }
+    const onExit = async (data) => {
+        setShowConfirmationModal(false)
+    }
     return (
         <div>
             <Image src={require("./../../../assets/icons/blue_plus.png")} style={{ maxWidth: '20%' }} onClick={onClick} />
-            {showConfirmationModal&&<CreateGroupPage></CreateGroupPage>}
+            {showConfirmationModal && <CreateGroupPage onCancel={onExit}></CreateGroupPage>}
         </div>
     );
 };
