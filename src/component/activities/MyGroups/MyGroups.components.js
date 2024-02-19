@@ -1,11 +1,20 @@
 import { Image } from "react-bootstrap";
 import OptionsColumn from "../OptionsColumn.components";
 import MyGroupOption from "./MyGroupOption.components";
+import { useState } from "react";
+import CreateGroupPage from "./CreateGroupPage.components";
 
 
-const Junk = ({ }) => {
+const CreateGroupBotton = ({ }) => {
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const onClick = async (data) => {
+        setShowConfirmationModal(true)
+    }
     return (
-        <Image src={require("./../../../assets/icons/blue_plus.png")} style={{maxWidth:'20%'}}/>
+        <div>
+            <Image src={require("./../../../assets/icons/blue_plus.png")} style={{ maxWidth: '20%' }} onClick={onClick} />
+            {showConfirmationModal&&<CreateGroupPage></CreateGroupPage>}
+        </div>
     );
 };
 
@@ -15,7 +24,7 @@ const MyGroups = ({ locationId }) => {
         locationId={locationId}
         uri="posts/getMyPosts"
         optionComponent={MyGroupOption}
-        afterwardsComponent={Junk}
+        afterwardsComponent={CreateGroupBotton}
         noResultsTxt={'לא הצטרפת לאף קבוצה עדיין!'}
     />
     );
