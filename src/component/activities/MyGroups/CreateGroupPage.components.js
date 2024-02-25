@@ -94,6 +94,7 @@ const CreateGroupPage = ({ onCancel }) => {
                             required: 'זהו שדה חובה',
                             min: { value: 2, message: 'הזן מספר גדול מ-1' },
                         })}
+                        defaultValue={2}
                     />
                 </div>
                 <div className="form-group">
