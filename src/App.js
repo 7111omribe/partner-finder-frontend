@@ -13,7 +13,7 @@ function App() {
   const [userData, setUserData] = useState({});
   const [locationData, setlocationData] = useState({});
   return (
-    <UserDataContext.Provider value={{ userData, setUserData }}>
+    <UserDataContext.Provider value={{ userData, setUserData, locationData, setlocationData }}>
       <Router>
         <div className="App">
           {Object.keys(userData).length === 0 ? (

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import SemiPage from '../../../toolsComponents/SemiPage.components';
 import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './CreateGroupPage.css';
+import { UserDataContext } from '../../../App';
+
 
 const CreateGroupPage = ({ onCancel }) => {
     const {
@@ -16,9 +18,28 @@ const CreateGroupPage = ({ onCancel }) => {
     } = useForm();
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
+    const { userData, locationData } = useContext(UserDataContext);
 
     const onSubmit = async (data) => {
-        console.log('oops');
+        try {
+            const response = await fetch('http://localhost:4000/postsActions/createPost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ formData: data, userId: userData['user_id'], locationId: locationData['location_id'] }),
+            });
+
+            if (response.status === 201) {
+                // todo add pop-up
+                console.log('hoy')
+                // onCancel();
+            }
+            else { setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה'); }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה');
+        }
     };
 
     const options = [
