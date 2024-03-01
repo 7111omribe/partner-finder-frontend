@@ -48,6 +48,14 @@ const CreateGroupPage = ({ onCancel }) => {
         { value: 'option3', label: 'Option 3' },
     ];
 
+    const activityTypesOption = [
+        { value: 'טרק', label: 'טרק' },
+        { value: 'סדנה', label: 'סדנה' },
+        { value: 'אטרקציה', label: 'אטרקציה' },
+        { value: 'סיור', label: 'סיור' },
+        { value: 'טיול יום', label: 'טיול יום' },
+    ];
+
     return (
         <SemiPage onCancel={onCancel}>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,6 +104,21 @@ const CreateGroupPage = ({ onCancel }) => {
                                 />
                             </>
                         )}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="activity">סוג פעילות</label>
+                    <Select
+                        {...register('activityType')}
+                        options={[
+                            { label: 'בחר סוג פעילות', value: null },
+                            ...activityTypesOption
+                        ]}
+                        placeholder={'בחר סוג פעילות'}
+                        defaultValue={{ label: 'בחר סוג פעילות', value: null }}
+                        onChange={(selectedOption) => {
+                            setValue('activityType', selectedOption?.value || null);
+                        }}
                     />
                 </div>
                 <div className="form-group">
