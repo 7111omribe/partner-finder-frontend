@@ -22,9 +22,8 @@ const CreateGroupBotton = ({ }) => {
 };
 
 
-const MyGroups = ({ locationId }) => {
+const MyGroups = () => {
     return (<OptionsColumn
-        locationId={locationId}
         uri="posts/getMyPosts"
         optionComponent={MyGroupOption}
         afterwardsComponent={CreateGroupBotton}

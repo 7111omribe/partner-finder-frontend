@@ -30,7 +30,7 @@ function App() {
               <Navbar locationData={locationData} locationSetter={setlocationData} />
               <Routes>
                 <Route path="/activities" element={
-                  <ActivitiesPage locationId={locationData['location_id']} />
+                  <ActivitiesPage />
                 } />
                 <Route path="/settings" element={
                   <SettingsPage userData={userData} />

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserDataContext } from '../../App';
 
 const OptionsColumn = ({
-    locationId,
     uri,
     optionComponent: OptionComponent,
     afterwardsComponent: AfterwardsComponent,
@@ -11,8 +10,9 @@ const OptionsColumn = ({
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errorTxt, setErrorTxt] = useState(null);
-    const { userData } = useContext(UserDataContext);
+    const { userData, locationData } = useContext(UserDataContext);
     const userId = userData['user_id']
+    const locationId = locationData['location_id']
 
     useEffect(() => {
         const fetchData = async () => {

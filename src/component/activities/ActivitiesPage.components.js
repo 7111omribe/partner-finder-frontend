@@ -6,8 +6,7 @@ import MyGroups from "./MyGroups/MyGroups.components";
 import OpenGroups from "./OpenGroups/OpenGroups.components";
 
 
-const ActivitiesPage = ({ locationId }) => {
-  const props = { locationId }
+const ActivitiesPage = () => {
   return (
     <Table striped bordered hover style={{ height: '100vh' }} className={"activities-page"}>
       <thead>
@@ -19,9 +18,9 @@ const ActivitiesPage = ({ locationId }) => {
       </thead>
       <tbody>
         <tr>
-          <td><ActivitiesList {...props} /></td>
-          <td><OpenGroups  {...props} /></td>
-          <td><MyGroups  {...props} /></td>
+          <td><ActivitiesList /></td>
+          <td><OpenGroups /></td>
+          <td><MyGroups /></td>
         </tr>
       </tbody>
     </Table>
