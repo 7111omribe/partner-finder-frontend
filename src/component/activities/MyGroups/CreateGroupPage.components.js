@@ -64,7 +64,7 @@ const CreateGroupPage = ({ onCancel }) => {
         const selectedActivity = activitiesList.find(activity => activity.activity_id === selectedOption.value);
         setSelectedActivity(selectedActivity);
         setValue('title', selectedActivity['activity_name']);
-        setValue('activityDate', selectedActivity['activity_time']);
+        setValue('activityTime', selectedActivity['activity_time']);
 
         const activityType = selectedActivity['activity_type']
         if (activityType) {
