@@ -5,7 +5,8 @@ const OptionsColumn = ({
     uri,
     optionComponent: OptionComponent,
     afterwardsComponent: AfterwardsComponent,
-    noResultsTxt
+    noResultsTxt,
+    setDataFunc
 }) => {
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,6 +14,12 @@ const OptionsColumn = ({
     const { userData, locationData } = useContext(UserDataContext);
     const userId = userData['user_id']
     const locationId = locationData['location_id']
+    function setOptionsEverywherw(val){
+        setOptions(val);
+        if(setDataFunc){
+            setDataFunc(val)
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,9 +38,9 @@ const OptionsColumn = ({
                 if (response.status === 200) {
                     const data = await response.json();
                     const optionsData = data['results'];
-                    setOptions(optionsData);
+                    setOptionsEverywherw(optionsData);
                 } else {
-                    setOptions([]);
+                    setOptionsEverywherw([]);
                     setErrorTxt(
                         response.status === 204
                             ? noResultsTxt
@@ -44,7 +51,7 @@ const OptionsColumn = ({
             } catch (error) {
                 setErrorTxt('תקלה לא ידועה');
                 console.error('Error fetching data:', error);
-                setOptions([]);
+                setOptionsEverywherw([]);
             } finally {
                 setLoading(false);
             }

@@ -4,7 +4,7 @@ import LoginForm from "./component/authing/login.components";
 import SignUp from './component/authing/signup.components';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './component/navigation/AppNavbar.components';
-import ActivitiesPage from './component/activities/ActivitiesPage.components';
+import { ActivitiesPage } from './component/activities/ActivitiesPage.components';
 import SettingsPage from './component/navigation/settings/SettingsPage.components';
 
 const UserDataContext = createContext();

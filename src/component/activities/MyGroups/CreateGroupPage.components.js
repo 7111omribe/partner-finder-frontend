@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './CreateGroupPage.css';
 import { UserDataContext } from '../../../App';
+import { ActivitiesListContext } from '../ActivitiesPage.components';
 
 
 const CreateGroupPage = ({ onCancel }) => {
@@ -19,6 +20,10 @@ const CreateGroupPage = ({ onCancel }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
     const { userData, locationData } = useContext(UserDataContext);
+    const { activitiesList } = useContext(ActivitiesListContext);
+    const [selectedActivity, setSelectedActivity] = useState(null);
+    const [selectedActivityType, setSelectedActivityType] = useState(null);
+
 
     const onSubmit = async (data) => {
         try {
@@ -42,11 +47,10 @@ const CreateGroupPage = ({ onCancel }) => {
         }
     };
 
-    const options = [
-        { value: 'option1', label: 'Option 1' },
-        { value: 'option2', label: 'Option 2' },
-        { value: 'option3', label: 'Option 3' },
-    ];
+    const options = activitiesList.map(activity => ({
+        value: activity.activity_id,
+        label: activity.activity_name,
+    }));
 
     const activityTypesOption = [
         { value: 'טרק', label: 'טרק' },
@@ -55,6 +59,23 @@ const CreateGroupPage = ({ onCancel }) => {
         { value: 'סיור', label: 'סיור' },
         { value: 'טיול יום', label: 'טיול יום' },
     ];
+
+    const handleActivityTypeChange = (selectedOption) => {
+        setSelectedActivityType(selectedOption);
+        // setValue('activityType', selectedOption);
+    };
+
+    const handleActivitySelection = (selectedOption) => {
+        const selectedActivity = activitiesList.find(activity => activity.activity_id === selectedOption.value);
+        setSelectedActivity(selectedActivity);
+        setValue('title', selectedActivity['activity_name']);
+        setValue('activityDate', selectedActivity['activity_time']);
+
+        const activityType = selectedActivity['activity_type']
+        if (activityType) {
+            setSelectedActivityType({ value: activityType, label: activityType });
+        }
+    };
 
     return (
         <SemiPage onCancel={onCancel}>
@@ -67,6 +88,7 @@ const CreateGroupPage = ({ onCancel }) => {
                         placeholder={'בחר פעילות'}
                         onChange={(selectedOption) => {
                             setValue('activity', selectedOption?.value || null);
+                            handleActivitySelection(selectedOption);
                         }}
                     />
                 </div>
@@ -107,8 +129,9 @@ const CreateGroupPage = ({ onCancel }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="activity">סוג פעילות</label>
+                    <label htmlFor="activityType">סוג פעילות</label>
                     <Select
+                        id='activityType'
                         {...register('activityType')}
                         options={[
                             { label: 'בחר סוג פעילות', value: null },
@@ -116,9 +139,8 @@ const CreateGroupPage = ({ onCancel }) => {
                         ]}
                         placeholder={'בחר סוג פעילות'}
                         defaultValue={{ label: 'בחר סוג פעילות', value: null }}
-                        onChange={(selectedOption) => {
-                            setValue('activityType', selectedOption?.value || null);
-                        }}
+                        value={selectedActivityType}
+                        onChange={handleActivityTypeChange}
                     />
                 </div>
                 <div className="form-group">
