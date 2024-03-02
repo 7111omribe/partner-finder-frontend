@@ -60,11 +60,6 @@ const CreateGroupPage = ({ onCancel }) => {
         { value: 'טיול יום', label: 'טיול יום' },
     ];
 
-    const handleActivityTypeChange = (selectedOption) => {
-        setSelectedActivityType(selectedOption);
-        // setValue('activityType', selectedOption);
-    };
-
     const handleActivitySelection = (selectedOption) => {
         const selectedActivity = activitiesList.find(activity => activity.activity_id === selectedOption.value);
         setSelectedActivity(selectedActivity);
@@ -140,7 +135,7 @@ const CreateGroupPage = ({ onCancel }) => {
                         placeholder={'בחר סוג פעילות'}
                         defaultValue={{ label: 'בחר סוג פעילות', value: null }}
                         value={selectedActivityType}
-                        onChange={handleActivityTypeChange}
+                        onChange={setSelectedActivityType(selectedOption)}
                     />
                 </div>
                 <div className="form-group">
