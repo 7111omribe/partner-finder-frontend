@@ -135,7 +135,7 @@ const CreateGroupPage = ({ onCancel }) => {
                         placeholder={'בחר סוג פעילות'}
                         defaultValue={{ label: 'בחר סוג פעילות', value: null }}
                         value={selectedActivityType}
-                        onChange={setSelectedActivityType(selectedOption)}
+                        onChange={setSelectedActivityType}
                     />
                 </div>
                 <div className="form-group">
