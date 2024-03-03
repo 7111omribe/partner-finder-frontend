@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './CreateGroupPage.css';
 import { UserDataContext } from '../../../App';
 import { ActivitiesListContext } from '../ActivitiesPage.components';
+import { paramToInt } from '../../../logic/utils';
 
 
 const CreateGroupPage = ({ onCancel, activity }) => {
@@ -24,12 +25,7 @@ const CreateGroupPage = ({ onCancel, activity }) => {
     const { userData, locationData } = useContext(UserDataContext);
     const { activitiesList } = useContext(ActivitiesListContext);
 
-    const paramToInt = (formCleanedData, paramName) => {
-        if (formCleanedData[paramName]) {
-            formCleanedData[paramName] = parseInt(formCleanedData[paramName])
-        }
-        return formCleanedData
-    }
+
 
     const onSubmit = async (data) => {
         try {
@@ -59,11 +55,6 @@ const CreateGroupPage = ({ onCancel, activity }) => {
         }
     };
 
-    const options = activitiesList.map(activity => ({
-        value: activity.activity_id,
-        label: activity.activity_name,
-    }));
-
     const activityTypesOption = [
         { value: 'טרק', label: 'טרק' },
         { value: 'סדנה', label: 'סדנה' },
@@ -89,7 +80,10 @@ const CreateGroupPage = ({ onCancel, activity }) => {
                     <label htmlFor="activity">פעילות</label>
                     <Select
                         {...register('activity', { required: 'This field is required' })}
-                        options={options}
+                        options={activitiesList.map(activity => ({
+                            value: activity.activity_id,
+                            label: activity.activity_name,
+                        }))}
                         value={selectedActivity}
                         placeholder={'בחר פעילות'}
                         onChange={(selectedOption) => {
