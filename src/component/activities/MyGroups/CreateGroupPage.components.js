@@ -24,21 +24,33 @@ const CreateGroupPage = ({ onCancel }) => {
     const [selectedActivity, setSelectedActivity] = useState(null);
     const [selectedActivityType, setSelectedActivityType] = useState(null);
 
+    const paramToInt = (formCleanedData, paramName) => {
+        if (formCleanedData[paramName]) {
+            formCleanedData[paramName] = parseInt(formCleanedData[paramName])
+        }
+        return formCleanedData
+    }
 
     const onSubmit = async (data) => {
         try {
+            let formCleanedData = Object.fromEntries(
+                Object.entries(data).filter(([_, value]) => value !== "" && value !== undefined)
+            );
+            formCleanedData = paramToInt(formCleanedData, 'minParticipants') // todo get number params from code, or config
+            formCleanedData = paramToInt(formCleanedData, 'maxParticipants')
+            formCleanedData = paramToInt(formCleanedData, 'myMembersNum')
             const response = await fetch('http://localhost:4000/postsActions/createPost', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ formData: data, userId: userData['user_id'], locationId: locationData['location_id'] }),
+                body: JSON.stringify({ formData: formCleanedData, userId: userData['user_id'], locationId: locationData['location_id'] }),
             });
 
             if (response.status === 201) {
                 // todo add pop-up
                 console.log('hoy')
-                // onCancel();
+                onCancel();
             }
             else { setErrorMessage('קרתה תקלה, שווה לנסות שוב עוד דקה'); }
         } catch (error) {
@@ -82,7 +94,7 @@ const CreateGroupPage = ({ onCancel }) => {
                         options={options}
                         placeholder={'בחר פעילות'}
                         onChange={(selectedOption) => {
-                            setValue('activity', selectedOption?.value || null);
+                            setValue('activity', selectedOption?.value || null); // todo to handleActivitySelection
                             handleActivitySelection(selectedOption);
                         }}
                     />
@@ -96,7 +108,7 @@ const CreateGroupPage = ({ onCancel }) => {
                     <input
                         type="text"
                         id="description"
-                        {...register('description', { required: 'זהו שדה חובה' })}
+                        {...register('description')}
                     />
                 </div>
                 <div className="form-group">
