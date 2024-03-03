@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import SemiPage from '../../../toolsComponents/SemiPage.components';
 import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select';
@@ -9,7 +9,7 @@ import { UserDataContext } from '../../../App';
 import { ActivitiesListContext } from '../ActivitiesPage.components';
 
 
-const CreateGroupPage = ({ onCancel }) => {
+const CreateGroupPage = ({ onCancel, activity }) => {
     const {
         control,
         register,
@@ -18,11 +18,11 @@ const CreateGroupPage = ({ onCancel }) => {
         formState: { errors },
     } = useForm();
     const [errorMessage, setErrorMessage] = useState('');
+    const [selectedActivity, setSelectedActivity] = useState(activity);
+    const [selectedActivityType, setSelectedActivityType] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const { userData, locationData } = useContext(UserDataContext);
     const { activitiesList } = useContext(ActivitiesListContext);
-    const [selectedActivity, setSelectedActivity] = useState(null);
-    const [selectedActivityType, setSelectedActivityType] = useState(null);
 
     const paramToInt = (formCleanedData, paramName) => {
         if (formCleanedData[paramName]) {
@@ -72,17 +72,15 @@ const CreateGroupPage = ({ onCancel }) => {
         { value: 'טיול יום', label: 'טיול יום' },
     ];
 
-    const handleActivitySelection = (selectedOption) => {
-        const selectedActivity = activitiesList.find(activity => activity.activity_id === selectedOption.value);
-        setSelectedActivity(selectedActivity);
-        setValue('title', selectedActivity['activity_name']);
-        setValue('activityTime', selectedActivity['activity_time']);
-
-        const activityType = selectedActivity['activity_type']
+    useEffect(() => {
+        const selectedFullActivity = selectedActivity ? activitiesList.find(activityFull => activityFull.activity_id === selectedActivity['value']) : {};
+        setValue('title', selectedFullActivity['activity_name']);
+        setValue('activityTime', selectedFullActivity['activity_time']);
+        const activityType = selectedFullActivity['activity_type']
         if (activityType) {
             setSelectedActivityType({ value: activityType, label: activityType });
         }
-    };
+    }, [selectedActivity]);
 
     return (
         <SemiPage onCancel={onCancel}>
@@ -92,10 +90,10 @@ const CreateGroupPage = ({ onCancel }) => {
                     <Select
                         {...register('activity', { required: 'This field is required' })}
                         options={options}
+                        value={selectedActivity}
                         placeholder={'בחר פעילות'}
                         onChange={(selectedOption) => {
-                            setValue('activity', selectedOption?.value || null); // todo to handleActivitySelection
-                            handleActivitySelection(selectedOption);
+                            setSelectedActivity(selectedOption)
                         }}
                     />
                 </div>

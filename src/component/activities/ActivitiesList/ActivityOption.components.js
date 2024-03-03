@@ -4,12 +4,14 @@ import { Col, Container, Row, Overlay, Tooltip } from 'react-bootstrap';
 import { BsPlus, BsQuestion } from 'react-icons/bs';
 import ActivityHover from './ActivityHover.components';
 import './../OptionItem.css'
+import CreateThisActivityBotton from './CreateThisActivityBotton.components';
 
 const CustomQuestionIcon = React.forwardRef((props, ref) => (
     <BsQuestion {...props} ref={ref} />
 ));
 
 const ActivityOption = ({ item }) => {
+    const activityId = item.activity_id
     const title = item.activity_name
     const imgPath = item.img_path
     const description = item.activity_description
@@ -65,7 +67,7 @@ const ActivityOption = ({ item }) => {
                     </div>
                 </Col>
                 <Col md={3} >
-                    <BsPlus size={30} className="ml-auto" />
+                    <CreateThisActivityBotton activityTitle={title} activityId={activityId} />
                 </Col>
             </Row>
         </Container>
