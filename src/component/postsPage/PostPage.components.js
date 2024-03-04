@@ -18,15 +18,20 @@ const DetailBox = ({ title, children }) => {
     );
 };
 
+const MoreDetails = ({ item }) => {
+    const { activitiesList } = useContext(ActivitiesListContext);
+    const activityId = item.activityData.activityId
+    if (activityId) {
+        const fullActivity = activitiesList.find(fullActivity => fullActivity.activity_id === activityId)
+        return (<ActivityHoverCreation item={fullActivity} />)
+    } else {
+        return (
+            <div />
+        )
+    }
+}
 
 const PostPage = ({ onCancel, item }) => {
-    const { activitiesList } = useContext(ActivitiesListContext);
-
-    const getActivityData = (realActivityId) => {
-        const fullActivity = realActivityId ? activitiesList.find(fullActivity => fullActivity.activity_id === realActivityId) : {};
-        return fullActivity
-    }
-
     return (
         <SemiPage onCancel={onCancel}>
             <Container>
@@ -52,7 +57,7 @@ const PostPage = ({ onCancel, item }) => {
                         <DetailBox title={'סוג הפעילות'}>
                             {item.activityData.activityType}
                         </DetailBox>
-                        <ActivityHoverCreation item={getActivityData(item.activityData.activityId)} />
+                        <MoreDetails item={item} />
                     </Col>
                     <Col md={8}>
                         <div className="h5">צ'אט</div>
