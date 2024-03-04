@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import './OptionItem.css';
 import { StartTimeTab } from './StartTimeTab';
+import PostPage from '../postsPage/PostPage.components';
 
 function createCurrentAtendenciesTxt(item) {
     let attendenciesNum = 0;
@@ -38,33 +39,38 @@ const GroupOption = ({ item, style }) => {
     const currentAttendenciesTxt = createCurrentAtendenciesTxt(item);
     const participantsRange = createParticipantsRangeTxt(item);
     const timeAmount = item['activityData']['activityTime'] ?? '';
+
+    const [openPostPage, setOpenPostPage] = useState(false);
     return (
-        <Container style={style} className={'option-item'}>
-            <Row>
-                <Col style={{ textAlign: 'center' }} className={'h5'}>
-                    {title}
-                </Col>
-            </Row>
-            <Row>
-                <Col style={{ textAlign: 'center' }}>
-                    {description}
-                </Col>
-            </Row>
-            <Row>
-                <Col md={3}>
-                    {currentAttendenciesTxt}
-                </Col>
-                <Col md={3}>
-                    {participantsRange}
-                </Col>
-                <Col md={3}>
-                    <StartTimeTab item={item} />
-                </Col>
-                <Col md={3} >
-                    {timeAmount}
-                </Col>
-            </Row>
-        </Container>
+        <div>
+            <Container style={style} className={'option-item'}>
+                <Row onClick={() => { setOpenPostPage(true) }}>
+                    <Col style={{ textAlign: 'center' }} className={'h5'}>
+                        {title}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col style={{ textAlign: 'center' }}>
+                        {description}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={3}>
+                        {currentAttendenciesTxt}
+                    </Col>
+                    <Col md={3}>
+                        {participantsRange}
+                    </Col>
+                    <Col md={3}>
+                        <StartTimeTab item={item} />
+                    </Col>
+                    <Col md={3} >
+                        {timeAmount}
+                    </Col>
+                </Row>
+            </Container>
+            {openPostPage && <PostPage onCancel={()=>{setOpenPostPage(false)}} item={item}/>}
+        </div>
     );
 
 
