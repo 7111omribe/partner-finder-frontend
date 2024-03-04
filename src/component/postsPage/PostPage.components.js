@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import SemiPage from "../../toolsComponents/SemiPage.components";
 import { StartTimeTab } from "../activities/StartTimeTab";
 import ChatPage from "./chat/ChatPage.components";
@@ -6,6 +6,37 @@ import UserBoxInPost from "./UserBoxInPost.components";
 import ActivityHoverCreation from "../activities/ActivitiesList/ActivityHoverCreation.components";
 import { ActivitiesListContext } from "../activities/ActivitiesPage.components";
 import { useContext } from "react";
+
+const JoinGroupBotton = ({ item }) => {
+    const onClick = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/posts/joinGroup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: 1, //todo change
+                    postId: item._id,
+                    friendsNum: 0 // todo change
+                }),
+            });
+
+            if (response.status === 201) {
+                console.log('yeyy')
+            }
+            else { console.log('error') } // todo create setErrorMessage
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
+    }
+
+    return (
+        <Button onClick={onClick}>
+            הצטרפות לקבוצה
+        </Button>
+    )
+}
 
 const DetailBox = ({ title, children }) => {
     return (
@@ -83,6 +114,9 @@ const PostPage = ({ onCancel, item }) => {
                         <div className="h5">חברים בקבוצה</div>
                         {item.statusData.attendencies.map((item, index) => <UserBoxInPost userData={item} key={index} />)}
                     </Col>
+                </Row>
+                <Row>
+                    <JoinGroupBotton item={item} />
                 </Row>
             </Container>
         </SemiPage>
