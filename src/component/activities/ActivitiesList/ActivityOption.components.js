@@ -1,35 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useRef } from 'react';
-import { Col, Container, Row, Overlay, Tooltip } from 'react-bootstrap';
-import { BsPlus, BsQuestion } from 'react-icons/bs';
-import ActivityHoverPage from './ActivityHoverPage.components';
-import './../OptionItem.css'
+import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import './../OptionItem.css';
+import ActivityHoverCreation from './ActivityHoverCreation.components';
 import CreateThisActivityBotton from './CreateThisActivityBotton.components';
 
-const CustomQuestionIcon = React.forwardRef((props, ref) => (
-    <BsQuestion {...props} ref={ref} />
-));
+
 
 const ActivityOption = ({ item }) => {
     const activityId = item.activity_id
     const title = item.activity_name
-    const imgPath = item.img_path
-    const description = item.activity_description
     const activityTime = item.activity_time
     const activityType = item.activity_type
-    const agents = item.agents
-
-    const [showTooltip, setShowTooltip] = useState(false);
-    const target = useRef(null);
-
-    const handleMouseEnter = () => {
-        setShowTooltip(true);
-    };
-
-    const handleMouseLeave = () => {
-        setShowTooltip(false);
-    };
-
     return (
         <Container className={'option-item'}>
             <Row>
@@ -45,26 +27,7 @@ const ActivityOption = ({ item }) => {
                     {activityTime}
                 </Col>
                 <Col md={3}>
-                    <div ref={target}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <CustomQuestionIcon size={30} className="ml-auto" />
-                        <Overlay
-                            show={showTooltip}
-                            target={target.current}
-                            placement="left"
-                            container={document.body}
-                            containerPadding={20}
-                        >
-                            <Tooltip
-                                id="overlay-example"
-                            // style={{ width: 300 }}
-                            >
-                                <ActivityHoverPage title={title} imgPath={imgPath} description={description} agents={agents} />
-                            </Tooltip>
-                        </Overlay>
-                    </div>
+                    <ActivityHoverCreation item={item} />
                 </Col>
                 <Col md={3} >
                     <CreateThisActivityBotton activityTitle={title} activityId={activityId} />
