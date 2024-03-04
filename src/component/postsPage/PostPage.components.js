@@ -3,11 +3,20 @@ import SemiPage from "../../toolsComponents/SemiPage.components";
 import { StartTimeTab } from "../activities/StartTimeTab";
 import ChatPage from "./chat/ChatPage.components";
 import UserBoxInPost from "./UserBoxInPost.components";
+import ActivityHoverCreation from "../activities/ActivitiesList/ActivityHoverCreation.components";
+import { ActivitiesListContext } from "../activities/ActivitiesPage.components";
+import { useContext } from "react";
 
 
 
 const PostPage = ({ onCancel, item }) => {
-    console.log('hey')
+    const { activitiesList } = useContext(ActivitiesListContext);
+
+    const getActivityData = (realActivityId) => {
+        const fullActivity = realActivityId ? activitiesList.find(fullActivity => fullActivity.activity_id === realActivityId) : {};
+        return fullActivity
+    }
+
     return (
         <SemiPage onCancel={onCancel}>
             <Container>
@@ -26,6 +35,7 @@ const PostPage = ({ onCancel, item }) => {
                         <StartTimeTab item={item} />
                         <div>{item.activityData.activityTime}</div>
                         <div>{item.activityData.activityType}</div>
+                        <ActivityHoverCreation item={getActivityData(item.activityData.activityId)} />
                     </Col>
                     <Col md={8}>
                         <ChatPage>
