@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef } from 'react';
 import { Col, Container, Row, Overlay, Tooltip } from 'react-bootstrap';
 import { BsPlus, BsQuestion } from 'react-icons/bs';
-import ActivityHover from './ActivityHover.components';
+import ActivityHoverPage from './ActivityHover.components';
 import './../OptionItem.css'
 import CreateThisActivityBotton from './CreateThisActivityBotton.components';
 
@@ -61,7 +61,7 @@ const ActivityOption = ({ item }) => {
                                 id="overlay-example"
                             // style={{ width: 300 }}
                             >
-                                <ActivityHover title={title} imgPath={imgPath} description={description} agents={agents} />
+                                <ActivityHoverPage title={title} imgPath={imgPath} description={description} agents={agents} />
                             </Tooltip>
                         </Overlay>
                     </div>

@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Container, Image, Row } from 'react-bootstrap';
-import './ActivityHover.css';
+import './ActivityHoverPage.css';
 
 
 
-const ActivityHover = ({ title, imgPath, description, agents }) => {
+const ActivityHoverPage = ({ title, imgPath, description, agents }) => {
     return (
         <div
             id="overlay-example"
@@ -45,4 +45,4 @@ const ActivityHover = ({ title, imgPath, description, agents }) => {
     );
 };
 
-export default ActivityHover;
+export default ActivityHoverPage;
