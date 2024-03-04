@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef } from 'react';
 import { Col, Container, Row, Overlay, Tooltip } from 'react-bootstrap';
 import { BsPlus, BsQuestion } from 'react-icons/bs';
-import ActivityHoverPage from './ActivityHover.components';
+import ActivityHoverPage from './ActivityHoverPage.components';
 import './../OptionItem.css'
 import CreateThisActivityBotton from './CreateThisActivityBotton.components';
 
