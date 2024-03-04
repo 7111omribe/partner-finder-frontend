@@ -1,4 +1,4 @@
-import './UserBoxInPost.css';
+import './PostPage.css';
 
 
 const UserBoxInPost = ({ userData }) => {
@@ -12,7 +12,7 @@ const UserBoxInPost = ({ userData }) => {
         return `בא עם עוד ${attendenciesNum - 1} אנשים`
     }
     return ( // todo add restoring when have logs. and then add sorting function
-        <div className="user-box">
+        <div className="box-in-post">
             <div>יוזר {userData.userNumInPost}</div>
             <div>{getFriendsNumTxt(userData.num)}</div>
         </div>
