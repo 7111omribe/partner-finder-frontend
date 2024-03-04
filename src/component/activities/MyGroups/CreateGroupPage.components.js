@@ -61,7 +61,7 @@ const CreateGroupPage = ({ onCancel, activity }) => {
         { value: 'אטרקציה', label: 'אטרקציה' },
         { value: 'סיור', label: 'סיור' },
         { value: 'טיול יום', label: 'טיול יום' },
-    ];
+    ]; // todo to conf
 
     useEffect(() => {
         const selectedFullActivity = selectedActivity ? activitiesList.find(activityFull => activityFull.activity_id === selectedActivity['value']) : {};
