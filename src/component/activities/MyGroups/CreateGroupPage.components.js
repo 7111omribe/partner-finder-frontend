@@ -25,7 +25,10 @@ const CreateGroupPage = ({ onCancel, activity }) => {
     const { userData, locationData } = useContext(UserDataContext);
     const { activitiesList } = useContext(ActivitiesListContext);
 
-
+    const handleActivityTypeChange = (activityType) => {
+        setSelectedActivityType(activityType);
+        setValue('activityType', activityType?.value || undefined);
+    }
 
     const onSubmit = async (data) => {
         try {
@@ -64,12 +67,13 @@ const CreateGroupPage = ({ onCancel, activity }) => {
     ]; // todo to conf
 
     useEffect(() => {
+        setValue('activity', selectedActivity?.value || null);
         const selectedFullActivity = selectedActivity ? activitiesList.find(activityFull => activityFull.activity_id === selectedActivity['value']) : {};
         setValue('title', selectedFullActivity['activity_name']);
         setValue('activityTime', selectedFullActivity['activity_time']);
         const activityType = selectedFullActivity['activity_type']
         if (activityType) {
-            setSelectedActivityType({ value: activityType, label: activityType });
+            handleActivityTypeChange({ value: activityType, label: activityType });
         }
     }, [selectedActivity]);
 
@@ -79,7 +83,7 @@ const CreateGroupPage = ({ onCancel, activity }) => {
                 <div className="form-group">
                     <label htmlFor="activity">פעילות</label>
                     <Select
-                        {...register('activity', { required: 'This field is required' })}
+                        {...register('activity')}
                         options={activitiesList.map(activity => ({
                             value: activity.activity_id,
                             label: activity.activity_name,
@@ -139,7 +143,7 @@ const CreateGroupPage = ({ onCancel, activity }) => {
                         placeholder={'בחר סוג פעילות'}
                         defaultValue={{ label: 'בחר סוג פעילות', value: null }}
                         value={selectedActivityType}
-                        onChange={setSelectedActivityType}
+                        onChange={handleActivityTypeChange}
                     />
                 </div>
                 <div className="form-group">
