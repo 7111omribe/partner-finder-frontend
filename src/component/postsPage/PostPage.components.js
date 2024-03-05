@@ -1,53 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { UserDataContext } from "../../App";
 import SemiPage from "../../toolsComponents/SemiPage.components";
 import ActivityHoverCreation from "../activities/ActivitiesList/ActivityHoverCreation.components";
 import { ActivitiesListContext } from "../activities/ActivitiesPage.components";
-import { StartTimeTab } from "../activities/StartTimeTab";
+import ChangeMembershipStatusBotton from "./ChangeMembershipStatusBotton.components";
+import DetailBox from "./DetailBox.components";
 import UserBoxInPost from "./UserBoxInPost.components";
 import ChatPage from "./chat/ChatPage.components";
-import ChangeMembershipStatusBotton from "./ChangeMembershipStatusBotton.components";
-import { UserDataContext } from "../../App";
 
 
 
-
-const DetailBox = ({ title, value, isAdminVersion }) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [editedValue, setEditedValue] = useState(value);
-
-    const handleDoubleClick = () => {
-        if (isAdminVersion) {
-            setIsEditing(true);
-        }
-    };
-
-    const handleBlur = () => {
-        setIsEditing(false);
-    };
-
-    const handleChange = (e) => {
-        setEditedValue(e.target.value);
-    };
-
-    if (value === undefined) {
-        return <div />
-    }
-    return (
-        <div className="box-in-post" onDoubleClick={handleDoubleClick} onBlur={handleBlur}>
-            <p>{title + ' - '}</p>
-            <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
-            {isEditing && (
-                <input
-                    type="text"
-                    value={editedValue}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-            )}
-        </div>
-    );
-};
 
 const MoreDetails = ({ item }) => {
     const { activitiesList } = useContext(ActivitiesListContext);
