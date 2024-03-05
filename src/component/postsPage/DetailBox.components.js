@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { TextInput } from "./EditionInputTypes.components";
 import { searchInnerPath } from "../../logic/utils";
+import { POSTS_PARAMS } from "../../config/postParamsDataConf";
 
-const DetailEdition = ({ InputType, ...editionProps }) => {
+const DetailEdition = ({ path, ...editionProps }) => {
+    const InputType = POSTS_PARAMS[path]['inputType'];
     return (
         <InputType {...editionProps} />
     )
 }
 
-const EditableParam = ({ value }) => {
+const EditableParam = ({ value, path }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedValue, setEditedValue] = useState(value);
 
@@ -28,7 +29,7 @@ const EditableParam = ({ value }) => {
         <div onDoubleClick={handleDoubleClick} onBlur={handleBlur}>
             <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
             {isEditing && (
-                <DetailEdition {...editionProps} InputType={TextInput} />
+                <DetailEdition {...editionProps} path={path} />
             )}
         </div>
     );
@@ -44,7 +45,7 @@ const DetailBox = ({ title, isAdminVersion, item, path }) => {
         <div className="box-in-post">
             <p>{title + ' - '}</p>
             {isAdminVersion ? (
-                <EditableParam value={value} />
+                <EditableParam value={value} path={path} />
             ) : (
                 <div>value</div>
             )}
