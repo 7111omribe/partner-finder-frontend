@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SemiPage from "../../toolsComponents/SemiPage.components";
 import ActivityHoverCreation from "../activities/ActivitiesList/ActivityHoverCreation.components";
@@ -7,16 +7,45 @@ import { StartTimeTab } from "../activities/StartTimeTab";
 import UserBoxInPost from "./UserBoxInPost.components";
 import ChatPage from "./chat/ChatPage.components";
 import ChangeMembershipStatusBotton from "./ChangeMembershipStatusBotton.components";
+import { UserDataContext } from "../../App";
 
 
-const DetailBox = ({ title, children }) => {
+
+
+const DetailBox = ({ title, value, isAdminVersion }) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedValue, setEditedValue] = useState(value);
+
+    const handleDoubleClick = () => {
+        if (isAdminVersion) {
+            setIsEditing(true);
+        }
+    };
+
+    const handleBlur = () => {
+        setIsEditing(false);
+    };
+
+    const handleChange = (e) => {
+        setEditedValue(e.target.value);
+    };
+
+    if (value === undefined) {
+        return <div />
+    }
     return (
-        children !== undefined ? (
-            <div className="box-in-post">
-                <p>{title + ' - '}</p>
-                {children}
-            </div>
-        ) : null
+        <div className="box-in-post" onDoubleClick={handleDoubleClick} onBlur={handleBlur}>
+            <p>{title + ' - '}</p>
+            <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
+            {isEditing && (
+                <input
+                    type="text"
+                    value={editedValue}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+            )}
+        </div>
     );
 };
 
@@ -34,7 +63,9 @@ const MoreDetails = ({ item }) => {
 }
 
 const PostPage = ({ onCancel, item, isMember }) => {
-    const adminId = item['creationData']['adminId']
+    const adminId = item['creationData']['adminId'];
+    const { userData } = useContext(UserDataContext);
+    const isAdminVersion = userData['user_id'] === adminId;
     return (
         <SemiPage onCancel={onCancel}>
             <Container>
@@ -51,15 +82,21 @@ const PostPage = ({ onCancel, item, isMember }) => {
                 <Row>
                     <Col md={2}>
                         <div className="h5">פרטים</div>
-                        <DetailBox title={'מתי יוצאים'}>
-                            <StartTimeTab item={item} />
-                        </DetailBox>
-                        <DetailBox title={'כמה זמן הפעילות'}>
-                            {item.activityData.activityTime}
-                        </DetailBox>
-                        <DetailBox title={'סוג הפעילות'}>
-                            {item.activityData.activityType}
-                        </DetailBox>
+                        <DetailBox
+                            title={'מתי יוצאים'}
+                            value={item.postData.plannedDate}
+                            isAdminVersion={isAdminVersion}
+                        />
+                        <DetailBox
+                            title={'כמה זמן הפעילות'}
+                            value={item.activityData.activityTime}
+                            isAdminVersion={isAdminVersion}
+                        />
+                        <DetailBox
+                            title={'סוג הפעילות'}
+                            value={item.activityData.activityType}
+                            isAdminVersion={isAdminVersion}
+                        />
                         <MoreDetails item={item} />
                     </Col>
                     <Col md={8}>
