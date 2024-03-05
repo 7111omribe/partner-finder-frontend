@@ -47,18 +47,21 @@ const PostPage = ({ onCancel, item, isMember }) => {
                         <div className="h5">פרטים</div>
                         <DetailBox
                             title={'מתי יוצאים'}
-                            value={item.postData.plannedDate}
                             isAdminVersion={isAdminVersion}
+                            item={item}
+                            path={'postData.plannedDate'}
                         />
                         <DetailBox
                             title={'כמה זמן הפעילות'}
-                            value={item.activityData.activityTime}
                             isAdminVersion={isAdminVersion}
+                            item={item}
+                            path={'activityData.activityTime'}
                         />
                         <DetailBox
                             title={'סוג הפעילות'}
-                            value={item.activityData.activityType}
                             isAdminVersion={isAdminVersion}
+                            item={item}
+                            path={'activityData.activityType'}
                         />
                         <MoreDetails item={item} />
                     </Col>

@@ -5,4 +5,13 @@ const paramToInt = (formCleanedData, paramName) => {
     return formCleanedData
 }
 
-export { paramToInt }
+const searchInnerPath = (item, path)=>{
+    const pathParts = path.split('.');
+    let inner = item;
+    for (const pathPart of pathParts){
+        inner = inner[pathPart];
+    }
+    return inner;
+}
+
+export { paramToInt, searchInnerPath }

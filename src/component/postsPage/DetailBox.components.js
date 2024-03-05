@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextInput } from "./EditionInputTypes.components";
+import { searchInnerPath } from "../../logic/utils";
 
 const DetailEdition = ({ InputType, ...editionProps }) => {
     return (
@@ -34,7 +35,8 @@ const EditableParam = ({ value }) => {
 
 }
 
-const DetailBox = ({ title, value, isAdminVersion }) => {
+const DetailBox = ({ title, isAdminVersion, item, path }) => {
+    const value = searchInnerPath(item, path)
     if (value === undefined) {
         return <div />
     }
