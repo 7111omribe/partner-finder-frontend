@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { searchInnerPath } from "../../logic/utils";
-import { POSTS_PARAMS } from "../../config/postParamsDataConf";
+import { renameObjectProperties, searchInnerPath } from "../../logic/utils";
+import { INPUT_TYPE_TO_RENAMING_FUNCS, POSTS_PARAMS } from "../../config/postParamsDataConf";
 
 const DetailEdition = ({ path, ...editionProps }) => {
     const InputType = POSTS_PARAMS[path]['inputType'];
+    const renamingDict = INPUT_TYPE_TO_RENAMING_FUNCS[InputType]
+    renameObjectProperties(editionProps, renamingDict)
     return (
         <InputType {...editionProps} />
     )
@@ -17,16 +19,16 @@ const EditableParam = ({ value, path }) => {
         setIsEditing(true);
     };
 
-    const handleBlur = () => {
+    const handleFinishEditing = () => {
         setIsEditing(false);
     };
 
-    const handleChange = (e) => {
+    const handleStartEditing = (e) => {
         setEditedValue(e.target.value);
     };
-    const editionProps = { value: editedValue, onChange: handleChange, onBlur: handleBlur }
+    const editionProps = { value: editedValue, onChange: handleStartEditing, onBlur: handleFinishEditing }
     return (
-        <div onDoubleClick={handleDoubleClick} onBlur={handleBlur}>
+        <div onDoubleClick={handleDoubleClick} onBlur={handleFinishEditing}>
             <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
             {isEditing && (
                 <DetailEdition {...editionProps} path={path} />
