@@ -34,20 +34,18 @@ const DateInput = ({ ...props }) => {
     )
 }
 
-const DetailEdition = ({  InputType, ...editionProps }) => {
+const DetailEdition = ({ InputType, ...editionProps }) => {
     return (
         <InputType {...editionProps} />
     )
 }
 
-const DetailBox = ({ title, value, isAdminVersion }) => {
+const EditableParam = ({ value }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedValue, setEditedValue] = useState(value);
 
     const handleDoubleClick = () => {
-        if (isAdminVersion) {
-            setIsEditing(true);
-        }
+        setIsEditing(true);
     };
 
     const handleBlur = () => {
@@ -57,17 +55,29 @@ const DetailBox = ({ title, value, isAdminVersion }) => {
     const handleChange = (e) => {
         setEditedValue(e.target.value);
     };
-
-    if (value === undefined) {
-        return <div />
-    }
     const editionProps = { value: editedValue, onChange: handleChange, onBlur: handleBlur }
     return (
-        <div className="box-in-post" onDoubleClick={handleDoubleClick} onBlur={handleBlur}>
-            <p>{title + ' - '}</p>
+        <div onDoubleClick={handleDoubleClick} onBlur={handleBlur}>
             <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
             {isEditing && (
                 <DetailEdition {...editionProps} InputType={TextInput} />
+            )}
+        </div>
+    );
+
+}
+
+const DetailBox = ({ title, value, isAdminVersion }) => {
+    if (value === undefined) {
+        return <div />
+    }
+    return (
+        <div className="box-in-post">
+            <p>{title + ' - '}</p>
+            {isAdminVersion ? (
+                <EditableParam value={value} />
+            ) : (
+                <div>value</div>
             )}
         </div>
     );
