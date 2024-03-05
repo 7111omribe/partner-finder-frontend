@@ -8,6 +8,7 @@ const OpenGroupOption = ({ item }) => {
     return (
         <GroupOption
             item={item}
+            isMember={false}
         />
     )
 };

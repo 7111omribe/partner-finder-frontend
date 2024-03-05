@@ -12,6 +12,7 @@ const MyGroupOption = ({ item }) => {
         <GroupOption
             item={item}
             style={isAdmin ? { backgroundColor: 'gold', borderWidth: '5px' } : {}}
+            isMember={true}
         />
     )
 };

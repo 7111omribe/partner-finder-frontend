@@ -32,7 +32,7 @@ function createParticipantsRangeTxt(item) {
 
 }
 
-const GroupOption = ({ item, style }) => {
+const GroupOption = ({ item, style, isMember }) => {
     const title = item['activityData']['title'];
     const description = item['activityData']['description'];
 
@@ -69,7 +69,7 @@ const GroupOption = ({ item, style }) => {
                     </Col>
                 </Row>
             </Container>
-            {openPostPage && <PostPage onCancel={()=>{setOpenPostPage(false)}} item={item}/>}
+            {openPostPage && <PostPage onCancel={() => { setOpenPostPage(false) }} item={item} isMember={isMember} />}
         </div>
     );
 
