@@ -1,71 +1,13 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { useContext } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import SemiPage from "../../toolsComponents/SemiPage.components";
-import { StartTimeTab } from "../activities/StartTimeTab";
-import ChatPage from "./chat/ChatPage.components";
-import UserBoxInPost from "./UserBoxInPost.components";
 import ActivityHoverCreation from "../activities/ActivitiesList/ActivityHoverCreation.components";
 import { ActivitiesListContext } from "../activities/ActivitiesPage.components";
-import { useContext } from "react";
+import { StartTimeTab } from "../activities/StartTimeTab";
+import UserBoxInPost from "./UserBoxInPost.components";
+import ChatPage from "./chat/ChatPage.components";
+import ChangeMembershipStatusBotton from "./ChangeMembershipStatusBotton.components";
 
-const JoinGroupBotton = ({ item, isMember }) => {
-    const joinGroup = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/posts/joinGroup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userId: 1, //todo change
-                    postId: item._id,
-                    friendsNum: 0 // todo change
-                }),
-            });
-
-            if (response.status === 201) {
-                console.log('yeyy')
-            }
-            else { console.log('error') } // todo create setErrorMessage
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    }
-    const leaveGroup = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/posts/leaveGroup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userId: 1, //todo change
-                    postId: item._id,
-                }),
-            });
-
-            if (response.status === 201) {
-                console.log('yeyy')
-            }
-            else { console.log('error') } // todo create setErrorMessage
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    }
-
-    const onClick = async () => {
-        if (isMember) {
-            leaveGroup();
-        } else {
-            joinGroup();
-        }
-    }
-
-    return (
-        <Button onClick={onClick}>
-            {isMember ? 'עזוב קבוצה' : 'הצטרפות לקבוצה'}
-        </Button>
-    )
-}
 
 const DetailBox = ({ title, children }) => {
     return (
@@ -129,7 +71,7 @@ const PostPage = ({ onCancel, item, isMember }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <JoinGroupBotton item={item} isMember={isMember} />
+                    <ChangeMembershipStatusBotton item={item} isMember={isMember} />
                 </Row>
             </Container>
         </SemiPage>
