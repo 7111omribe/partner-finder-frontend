@@ -34,6 +34,7 @@ const MoreDetails = ({ item }) => {
 }
 
 const PostPage = ({ onCancel, item, isMember }) => {
+    const adminId = item['creationData']['adminId']
     return (
         <SemiPage onCancel={onCancel}>
             <Container>
@@ -67,7 +68,7 @@ const PostPage = ({ onCancel, item, isMember }) => {
                     </Col>
                     <Col md={2}>
                         <div className="h5">חברים בקבוצה</div>
-                        {item.statusData.attendencies.map((item, index) => <UserBoxInPost userData={item} key={index} />)}
+                        {item.statusData.attendencies.map((item, index) => <UserBoxInPost userData={item} key={index} adminId={adminId} />)}
                     </Col>
                 </Row>
                 <Row>

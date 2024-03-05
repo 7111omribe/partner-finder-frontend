@@ -3,7 +3,7 @@ import './PostPage.css';
 import { UserDataContext } from '../../App';
 
 
-const UserBoxInPost = ({ userData }) => {
+const UserBoxInPost = ({ userData, adminId }) => {
     const { userData: myUserData } = useContext(UserDataContext)
 
     const getUserNameTxt = () => {
@@ -24,8 +24,14 @@ const UserBoxInPost = ({ userData }) => {
         }
         return `בא עם עוד ${attendenciesNum - 1} אנשים`
     };
+    const getStyle = () => {
+        if (adminId === userData.userId) {
+            return { backgroundColor: 'gold' }
+        }
+        return {}
+    }
     return ( // todo add restoring when have logs. and then add sorting function
-        <div className="box-in-post">
+        <div className="box-in-post" style={getStyle()}>
             <div>{getUserNameTxt()}</div>
             <div>{getFriendsNumTxt()}</div>
         </div>
