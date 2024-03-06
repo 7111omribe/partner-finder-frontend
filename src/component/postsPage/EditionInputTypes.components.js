@@ -2,13 +2,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-const TextInput = ({ editedValue, setEditedValue, setIsEditing }) => {
+const TextInput = ({ editedValue, setEditedValue, finishEditing }) => {
     const handleChange = (e) => {
         setEditedValue(e.target.value);
     };
 
     const handleBlur = () => {
-        setIsEditing(false);
+        finishEditing();
     };
 
     return (
@@ -21,7 +21,7 @@ const TextInput = ({ editedValue, setEditedValue, setIsEditing }) => {
     )
 }
 
-const DateInput = ({ editedValue, setEditedValue, setIsEditing }) => { // todo missing time bug
+const DateInput = ({ editedValue, setEditedValue, finishEditing }) => { // todo missing time bug
     const handleChange = (date) => {
         setEditedValue(date.toJSON())
     }
@@ -29,7 +29,7 @@ const DateInput = ({ editedValue, setEditedValue, setIsEditing }) => { // todo m
         <DatePicker
             selected={new Date(editedValue)}
             onChange={handleChange}
-            onClickOutside={() => { setIsEditing(false) }}
+            onClickOutside={finishEditing}
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}

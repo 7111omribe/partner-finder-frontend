@@ -10,6 +10,32 @@ const EditableParam = ({ value, path }) => {
     const handleDoubleClick = () => {
         setIsEditing(true);
     };
+    const finishEditing = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/posts/editPostData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    postId: '65e6287792e4485d15705a81', // todo CHANGE!
+                    path: path,
+                    newValue: editedValue,
+                }),
+            });
+
+            if (response.status === 201) {
+                console.log('successfully finished edition')
+                setIsEditing(false);
+            }
+            else {
+                console.log('error during editing')
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
+    }
+
     const postParamData = POSTS_PARAMS[path]
     const InputType = postParamData['inputType'];
     const ValueDisplay = postParamData['valueDisplay'];
@@ -17,7 +43,7 @@ const EditableParam = ({ value, path }) => {
         <div onDoubleClick={handleDoubleClick}>
             <span onDoubleClick={handleDoubleClick}><ValueDisplay value={editedValue} /></span>
             {isEditing && (
-                <InputType {...{ editedValue, setEditedValue, setIsEditing }} />
+                <InputType {...{ editedValue, setEditedValue, finishEditing }} />
             )}
         </div>
     );
