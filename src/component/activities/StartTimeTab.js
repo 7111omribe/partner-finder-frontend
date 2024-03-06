@@ -1,8 +1,7 @@
 import React from 'react';
 
-export const StartTimeTab = ({ item }) => {
-    const startTimeStr = item['postData']['plannedDate'] ?? null;
-    if (startTimeStr===null){
+export const StartTimeTab = ({ startTimeStr }) => {
+    if (!startTimeStr) {
         return <div>{'לא נקבע תאריך'}</div>
     }
     const now = new Date();

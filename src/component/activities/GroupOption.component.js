@@ -62,7 +62,7 @@ const GroupOption = ({ item, style, isMember }) => {
                         {participantsRange}
                     </Col>
                     <Col md={3}>
-                        <StartTimeTab item={item} />
+                        <StartTimeTab startTimeStr={item['postData']['plannedDate']} />
                     </Col>
                     <Col md={3} >
                         {timeAmount}
