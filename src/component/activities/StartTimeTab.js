@@ -16,15 +16,15 @@ export const StartTimeTab = ({ startTimeStr }) => {
     } else {
         dateColor = 'red';
     }
-
+    const hourTxt = actionDate.toTimeString().slice(0, 5)
     const daysDiff = (actionDate.setHours(0, 0, 0, 0) - now.setHours(0, 0, 0, 0)) / 60000 / 60 / 24;
     let txt;
     if (daysDiff === 1) {
-        txt = `מחר ב${actionDate.toTimeString().slice(0, 5)}`;
+        txt = `מחר ב${hourTxt}`;
     } else if (daysDiff === 2) {
-        txt = `מחרתיים ב${actionDate.toTimeString().slice(0, 5)}`;
+        txt = `מחרתיים ב${hourTxt}`;
     } else if (daysDiff > 2) {
-        txt = `עוד ${daysDiff} ימים ב${actionDate.toTimeString().slice(0, 5)}`;
+        txt = `עוד ${daysDiff} ימים ב${hourTxt}`;
     } else if (daysDiff == 0) {
         txt = `In ${daysDiff} days`;
     } else {
