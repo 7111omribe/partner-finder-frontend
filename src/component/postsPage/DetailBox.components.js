@@ -3,7 +3,7 @@ import { POSTS_PARAMS } from "../../config/postParamsDataConf";
 import { searchInnerPath } from "../../logic/utils";
 
 
-const EditableParam = ({ value, path }) => {
+const EditableParam = ({ value, path, isActivateEdition }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedValue, setEditedValue] = useState(value);
 
@@ -40,11 +40,12 @@ const EditableParam = ({ value, path }) => {
     const InputType = postParamData['inputType'];
     const ValueDisplay = postParamData['valueDisplay'];
     return (
-        <div onDoubleClick={handleDoubleClick}>
+        <div>
             <span onDoubleClick={handleDoubleClick}><ValueDisplay value={editedValue} /></span>
-            {isEditing && (
-                <InputType {...{ editedValue, setEditedValue, finishEditing }} />
-            )}
+            {isActivateEdition &&
+                (isEditing && (
+                    <InputType {...{ editedValue, setEditedValue, finishEditing }} />
+                ))}
         </div>
     );
 
@@ -58,11 +59,7 @@ const DetailBox = ({ title, isAdminVersion, item, path }) => {
     return (
         <div className="box-in-post">
             <p>{title + ' - '}</p>
-            {isAdminVersion ? (
-                <EditableParam value={value} path={path} />
-            ) : (
-                <div>value</div>
-            )}
+            <EditableParam value={value} path={path} isActivateEdition={isAdminVersion} />
         </div>
     );
 };
