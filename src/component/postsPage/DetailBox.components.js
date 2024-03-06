@@ -1,13 +1,7 @@
 import { useState } from "react";
-import { renameObjectProperties, searchInnerPath } from "../../logic/utils";
-import { INPUT_TYPE_TO_RENAMING_FUNCS, POSTS_PARAMS } from "../../config/postParamsDataConf";
+import { POSTS_PARAMS } from "../../config/postParamsDataConf";
+import { searchInnerPath } from "../../logic/utils";
 
-const DetailEdition = ({ editedValue, setEditedValue, setIsEditing, path }) => {
-    const InputType = POSTS_PARAMS[path]['inputType'];
-    return (
-        <InputType {...{ editedValue, setEditedValue, setIsEditing}} />
-    ) // todo move to upper func
-}
 
 const EditableParam = ({ value, path }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -16,12 +10,13 @@ const EditableParam = ({ value, path }) => {
     const handleDoubleClick = () => {
         setIsEditing(true);
     };
-
+    const postParamData = POSTS_PARAMS[path]
+    const InputType = postParamData['inputType'];
     return (
         <div onDoubleClick={handleDoubleClick}>
             <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
             {isEditing && (
-                <DetailEdition editedValue={editedValue} setEditedValue={setEditedValue} setIsEditing={setIsEditing} path={path} />
+                <InputType {...{ editedValue, setEditedValue, setIsEditing }} />
             )}
         </div>
     );
