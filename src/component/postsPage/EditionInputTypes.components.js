@@ -21,7 +21,7 @@ const TextInput = ({ editedValue, setEditedValue, setIsEditing }) => {
     )
 }
 
-const DateInput = ({ editedValue, setEditedValue, setIsEditing }) => {
+const DateInput = ({ editedValue, setEditedValue, setIsEditing }) => { // todo missing time bug
     const handleChange = (date) => {
         setEditedValue(date.toJSON())
     }
@@ -33,8 +33,8 @@ const DateInput = ({ editedValue, setEditedValue, setIsEditing }) => {
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
-        // dateFormat="HH:mm dd/MM/YYYY"
-        // placeholderText="בחר תאריך ושעה"
+            dateFormat="HH:mm dd/MM/YYYY"
+            placeholderText="בחר תאריך ושעה"
         />
 
     )
