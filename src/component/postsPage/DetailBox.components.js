@@ -12,9 +12,10 @@ const EditableParam = ({ value, path }) => {
     };
     const postParamData = POSTS_PARAMS[path]
     const InputType = postParamData['inputType'];
+    const ValueDisplay = postParamData['valueDisplay'];
     return (
         <div onDoubleClick={handleDoubleClick}>
-            <span onDoubleClick={handleDoubleClick}>{editedValue}</span>
+            <span onDoubleClick={handleDoubleClick}><ValueDisplay value={editedValue} /></span>
             {isEditing && (
                 <InputType {...{ editedValue, setEditedValue, setIsEditing }} />
             )}

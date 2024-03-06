@@ -1,14 +1,20 @@
+import { StartTimeTab } from "../component/activities/StartTimeTab";
 import { DateInput, TextInput } from "../component/postsPage/EditionInputTypes.components";
+
+// const TextDisplay = ()
 
 const POSTS_PARAMS = {
     'activityData.activityTime': {
-        inputType: TextInput
+        inputType: TextInput,
+        valueDisplay: ({value}) => { return (<div>{value}</div>) }
     },
     'activityData.activityType': {
-        inputType: TextInput
+        inputType: TextInput,
+        valueDisplay: ({value}) => { return (<div>{value}</div>) }
     },
     'postData.plannedDate': {
-        inputType: DateInput
+        inputType: DateInput,
+        valueDisplay: ({value}) => { return (<StartTimeTab startTimeStr={value} />) }
     }
 }
 
